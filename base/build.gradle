@@ -1,0 +1,61 @@
+apply plugin: 'com.android.library'
+apply plugin: 'kotlin-android'
+apply plugin: 'kotlin-android-extensions'
+apply plugin: 'kotlin-kapt'
+
+def root_android = rootProject.ext.android
+def root_dependencies = rootProject.ext.dependencies
+
+android {
+
+    compileSdkVersion root_android.compileSdkVersion
+    defaultConfig {
+        minSdkVersion root_android.minSdkVersion
+        targetSdkVersion root_android.targetSdkVersion
+        versionCode root_android.versionCode
+        versionName root_android.versionName
+    }
+
+    buildTypes {
+        release {
+            minifyEnabled false
+            proguardFiles getDefaultProguardFile('proguard-android-optimize.txt'), 'proguard-rules.pro'
+        }
+    }
+
+}
+
+kapt {
+    arguments {
+        arg("AROUTER_MODULE_NAME", project.getName())
+    }
+}
+
+
+dependencies {
+    implementation fileTree(dir: 'libs', include: ['*.jar'])
+    api root_dependencies.kotlin
+    api root_dependencies.androidx_core
+    api root_dependencies.appcompat
+    api root_dependencies.constraintlayout
+    api root_dependencies.rxjava
+    api root_dependencies.rxandroid
+    api root_dependencies.retrofit
+    api root_dependencies.converter_gson
+    api root_dependencies.adapter_rxjava2
+    api root_dependencies.gson
+    api root_dependencies.logging_interceptor
+    api root_dependencies.utilcodex
+    api root_dependencies.arouter
+    kapt root_dependencies.arouter_compiler
+    api root_dependencies.autosize
+    api root_dependencies.glide
+    annotationProcessor root_dependencies.glide_compiler
+    api root_dependencies.material_dialogs
+    api root_dependencies.logger
+    api root_dependencies.immersionbar
+    api root_dependencies.RecyclerViewAdapter
+    api root_dependencies.rxpermissions
+    api root_dependencies.matisse
+    api root_dependencies.multidex
+}
