@@ -1,0 +1,19 @@
+<?xml version="1.0" encoding="utf-8"?>
+<manifest xmlns:android="http://schemas.android.com/apk/res/android"
+    package="com.benyq.novel">
+
+    <application android:allowBackup="true">
+        <activity android:name=".NovelActivity" />
+        <activity android:name=".activity.BookChapterActivity"/>
+        <activity android:name=".activity.ReadSettingActivity" />
+        <activity android:name=".activity.ReadNovelActivity" />
+        <activity android:name=".activity.BookDetailActivity" />
+        <activity android:name=".activity.SearchBookActivity" />
+        <provider
+            android:name=".InitProvider"
+            android:authorities="${applicationId}.novel-init-provider"
+            android:exported="false"
+            android:multiprocess="true"/>
+    </application>
+
+</manifest>

@@ -1,0 +1,21 @@
+<?xml version="1.0" encoding="utf-8"?>
+<resources>
+
+    <declare-styleable name="IconFormLine">
+        <attr name="form_title" format="string" />
+        <attr name="form_content" format="string" />
+        <attr name="iine_show_divide" format="boolean" />
+        <attr name="iine_show_arrow" format="boolean" />
+        <attr name="iine_single_line" format="boolean" />
+        <attr name="iine_editable" format="boolean" />
+        <attr name="editview_hint" format="string" />
+        <attr name="editview_size" format="float" />
+        <attr name="editview_input_type" format="integer|reference" />
+        <attr name="form_title_color" format="color|reference" />
+        <attr name="form_content_color" format="color|reference" />
+        <attr name="checked" format="boolean" />
+        <attr name="form_icon" format="reference" />
+        <attr name="editview_gravity" format="integer" />
+    </declare-styleable>
+
+</resources>

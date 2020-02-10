@@ -1,0 +1,59 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:orientation="vertical"
+    tools:context=".activity.BookMoreFeatureActivity">
+
+    <include layout="@layout/view_common_toolbar_dark"/>
+
+    <androidx.core.widget.NestedScrollView
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        android:fillViewport="true">
+
+        <LinearLayout
+            android:layout_width="match_parent"
+            android:layout_height="match_parent"
+            android:orientation="vertical">
+
+            <com.benyq.common.ui.widght.IconFormLine
+                android:id="@+id/ifLocalBook"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_marginTop="10dp"
+                app:form_icon="@drawable/novel_ic_dir"
+                app:form_title="本地书籍"
+                app:iine_show_divide="false"/>
+
+            <com.benyq.common.ui.widght.IconFormLine
+                android:id="@+id/ifReadSetting"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                app:form_icon="@drawable/novel_ic_settings"
+                app:iine_show_divide="false"
+                app:form_title="阅读设置"/>
+
+            <com.benyq.common.ui.widght.IconFormLine
+                android:id="@+id/ifSwapCache"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                app:form_icon="@drawable/novel_ic_swap_cache"
+                app:iine_show_divide="false"
+                app:form_title="清理存储空间"/>
+
+
+            <com.benyq.common.ui.widght.IconFormLine
+                android:id="@+id/ifAbout"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                app:form_icon="@drawable/novel_ic_about"
+                app:iine_show_divide="false"
+                app:form_title="关于"/>
+
+        </LinearLayout>
+
+    </androidx.core.widget.NestedScrollView>
+</LinearLayout>

@@ -1,0 +1,25 @@
+<?xml version="1.0" encoding="utf-8"?>
+<navigation xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:id="@+id/search_book_navigation"
+    app:startDestination="@id/fragment_search_book_common">
+
+    <fragment android:id="@+id/fragment_search_book_common"
+        android:name="com.benyq.novel.fragment.searchbook.SearchBookCommonFragment"
+        android:label="search_book_common"
+        tools:layout="@layout/novel_fragment_search_book_common">
+
+        <action android:id="@+id/action_search_book_result"
+            app:destination="@id/fragment_search_book_result"/>
+
+    </fragment>
+
+    <fragment android:id="@+id/fragment_search_book_result"
+        android:name="com.benyq.novel.fragment.searchbook.SearchBookResultFragment"
+        android:label="search_book_result"
+        tools:layout="@layout/novel_fragment_search_book_result">
+
+    </fragment>
+
+</navigation>

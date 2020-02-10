@@ -1,0 +1,44 @@
+<?xml version="1.0" encoding="utf-8"?>
+<resources>
+    <color name="novel_colorPrimary">#008577</color>
+    <color name="novel_colorPrimaryDark">#00574B</color>
+    <color name="novel_colorAccent">#D81B60</color>
+
+
+    <color name="novel_color2c2c2c">#2c2c2c</color>
+
+    <color name="novel_color71BCFF">#71BCFF</color>
+
+    <color name="novel_colorWhite">#FFFFFF</color>
+
+    <color name="novel_color9e9e9e">#9e9e9e</color>
+    <color name="novel_colord8d8d8">#d8d8d8</color>
+    <color name="novel_colorE3E3E6">#E3E3E6</color>
+    <color name="novel_global_background">#F2F2F5</color>
+
+    <color name="novel_light_red">#EC4A48</color>
+    <color name="novel_search_pressed">#C0C0C0</color>
+    <color name="novel_search_normal">#DCDCDC</color>
+    <color name="novel_type_author">#4682B4</color>
+
+
+
+
+    <!--read-->
+    <color name="novel_read_bg_1">#CEC29C</color>
+    <color name="novel_read_bg_2">#CCEBCC</color>
+    <color name="novel_read_bg_3">#AAAAAA</color>
+    <color name="novel_read_bg_4">#D1CEC5</color>
+    <color name="novel_read_bg_5">#001C27</color>
+    <color name="novel_read_bg_6">#DDCEC29C</color>
+
+
+    <color name="novel_read_font_1">#2C2C2C</color>
+    <color name="novel_read_font_2">#2F332D</color>
+    <color name="novel_read_font_3">#92918C</color>
+    <color name="novel_read_font_4">#383429</color>
+    <color name="novel_read_font_5">#627176</color>
+
+    <color name="novel_read_bg_night">#000000</color>
+    <color name="novel_read_font_night">#99ffffff</color>
+</resources>

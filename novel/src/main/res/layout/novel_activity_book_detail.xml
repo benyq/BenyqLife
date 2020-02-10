@@ -1,0 +1,145 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout
+    xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:orientation="vertical">
+
+    <include layout="@layout/view_common_toolbar"/>
+
+    <LinearLayout
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:paddingStart="20dp"
+        android:paddingEnd="20dp"
+        android:layout_margin="5dp">
+
+        <ImageView
+            android:id="@+id/ivBookIcon"
+            android:layout_width="0dp"
+            android:layout_weight="1"
+            android:layout_height="160dp"/>
+
+        <LinearLayout
+            android:layout_width="0dp"
+            android:layout_weight="2"
+            android:layout_height="wrap_content"
+            android:orientation="vertical"
+            android:layout_marginStart="15dp">
+
+            <TextView
+                android:id="@+id/tvBookNameBig"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:textSize="20sp"
+                android:textColor="@color/color3C4044"
+                tools:text="凡人修仙传"/>
+
+            <TextView
+                android:id="@+id/tvBookName"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_marginTop="15dp"
+                android:textSize="16sp"
+                android:textColor="@color/color3C4044"
+                tools:text="凡人修仙传"/>
+
+            <TextView
+                android:id="@+id/tvUpdateTime"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_marginTop="10dp"
+                android:textSize="16sp"
+                android:textColor="@color/color3C4044"
+                tools:text="更新时间： 2018.04.17"/>
+
+            <TextView
+                android:id="@+id/tvLatestChapter"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_marginTop="10dp"
+                android:lines="1"
+                android:ellipsize="end"
+                android:textSize="16sp"
+                android:textColor="@color/color3C4044"
+                tools:text="最新章节： "/>
+
+            <TextView
+                android:id="@+id/tvBookLength"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_marginTop="10dp"
+                android:textSize="16sp"
+                android:textColor="@color/color3C4044"
+                tools:text="小说字数： "/>
+        </LinearLayout>
+
+    </LinearLayout>
+
+    <View
+        style="@style/novel_stronger_divider"
+        android:layout_marginTop="10dp"
+        android:layout_marginBottom="10dp"/>
+
+    <TextView
+        android:id="@+id/tvBookIntro"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_margin="10dp"
+        android:textSize="14sp"
+        android:textColor="@color/color2c2c2c"
+        tools:text="乡村犹如一幅连绵浩瀚的水墨画，那点点滴滴眷恋，始终萦绕在心头。云扬回到离开六七年的老家，看着景色优美、水清山幽的乡村，发现自己的心原来从没有离开过。水灵珠天降，从此逍遥山水之间。下潭捉鱼，，却发现了不得的生物；上山赶鸟，一不小心找到了被认为是神话中的神秘动物！华南虎？亚洲犀？金雕豹猫？那些动物真有，因为云扬都养在家呢！甚至还找到史前种子，至于能种出什么，云扬也不知道。想看更稀奇的动植物吗？欢迎来到乡村大世界，精彩不断，宝藏不绝。怀揣水灵珠，带着红颜，拿着直播设备，踏遍群山万壑，云扬发现奇趣乡村更是大有作为！ 作者：云上老白所写的《随身水灵珠之悠闲乡村》无弹窗免费全文阅读为转载作品,章节由网友发布。 推荐地址：https://www.biquge.lu/book/48033/"/>
+
+    <View android:layout_width="match_parent"
+        android:layout_height="0dp"
+        android:layout_weight="1"/>
+
+    <LinearLayout
+        android:layout_width="match_parent"
+        android:layout_height="45dp"
+        android:orientation="horizontal">
+
+        <LinearLayout
+            android:id="@+id/llSubscribeBook"
+            android:layout_width="0dp"
+            android:layout_weight="1"
+            android:layout_height="match_parent">
+
+            <RelativeLayout
+                android:layout_width="60dp"
+                android:layout_height="match_parent">
+
+                <ImageView
+                    android:id="@+id/ivSubscribe"
+                    android:layout_width="30dp"
+                    android:layout_height="30dp"
+                    android:layout_centerInParent="true"
+                    tools:src="@drawable/novel_ic_book_subscribe"/>
+
+            </RelativeLayout>
+
+            <TextView
+                android:id="@+id/tvSubscribe"
+                android:layout_width="match_parent"
+                android:layout_height="match_parent"
+                android:gravity="start|center_vertical"
+                android:text="@string/novel_subscribe_book"
+                android:textColor="@color/color3C4044"
+                android:textSize="16sp"/>
+
+        </LinearLayout>
+
+        <TextView
+            android:id="@+id/tvRead"
+            android:layout_width="0dp"
+            android:layout_weight="2"
+            android:layout_height="match_parent"
+            android:background="@color/colorPrimary"
+            android:gravity="center"
+            android:textColor="@color/white"
+            android:textSize="18sp"
+            android:text="@string/novel_read"/>
+
+    </LinearLayout>
+</LinearLayout>

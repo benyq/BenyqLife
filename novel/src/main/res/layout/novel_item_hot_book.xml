@@ -1,0 +1,20 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="wrap_content"
+    android:layout_height="wrap_content"
+    android:background="@drawable/novel_selector_hot_book"
+    android:padding="5dp"
+    android:layout_marginEnd="15dp"
+    android:layout_marginBottom="10dp">
+
+    <TextView
+        android:id="@+id/tvHotBook"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:textColor="@color/color3C4044"
+        android:textSize="18sp"
+        tools:text="无敌败家子" />
+
+</LinearLayout>
+

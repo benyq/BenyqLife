@@ -1,0 +1,169 @@
+{
+  "_note1": "KEEP THIS FILE! Check it into a version control system (VCS) like git.",
+  "_note2": "ObjectBox manages crucial IDs for your object model. See docs for details.",
+  "_note3": "If you have VCS merge conflicts, you must resolve them according to ObjectBox docs.",
+  "entities": [
+    {
+      "id": "1:6419752316572126555",
+      "lastPropertyId": "9:8813171389350271289",
+      "name": "BookChapterEntity",
+      "properties": [
+        {
+          "id": "1:2305547651595142221",
+          "name": "id",
+          "type": 6,
+          "flags": 1
+        },
+        {
+          "id": "4:2731499927261458832",
+          "name": "chapterIndex",
+          "type": 9
+        },
+        {
+          "id": "5:4143402912941667936",
+          "name": "chapterName",
+          "type": 9
+        },
+        {
+          "id": "6:2903203317709588206",
+          "name": "contentLink",
+          "type": 9
+        },
+        {
+          "id": "8:1116003520772121139",
+          "name": "contentFile",
+          "type": 9
+        },
+        {
+          "id": "9:8813171389350271289",
+          "name": "customerId",
+          "indexId": "1:4610493545303236605",
+          "type": 11,
+          "flags": 1548,
+          "relationTarget": "BookInfoEntity"
+        }
+      ],
+      "relations": []
+    },
+    {
+      "id": "3:2641367476756094728",
+      "lastPropertyId": "11:3576152324813640615",
+      "name": "BookInfoEntity",
+      "properties": [
+        {
+          "id": "1:7714153490351153928",
+          "name": "id",
+          "type": 6,
+          "flags": 1
+        },
+        {
+          "id": "2:2059887415770667916",
+          "name": "bookId",
+          "type": 9
+        },
+        {
+          "id": "3:2389078029315886601",
+          "name": "name",
+          "type": 9
+        },
+        {
+          "id": "4:8890328350428077473",
+          "name": "noteUrl",
+          "type": 9
+        },
+        {
+          "id": "5:5393925658028356801",
+          "name": "coverUrl",
+          "type": 9
+        },
+        {
+          "id": "6:8862438700495448859",
+          "name": "author",
+          "type": 9
+        },
+        {
+          "id": "7:5251939982769533759",
+          "name": "cateLog",
+          "type": 9
+        },
+        {
+          "id": "8:5509855517317117774",
+          "name": "isLocal",
+          "type": 1,
+          "flags": 4
+        },
+        {
+          "id": "9:2016338930998722206",
+          "name": "currentChapterId",
+          "type": 6,
+          "flags": 4
+        },
+        {
+          "id": "10:9071121054037328308",
+          "name": "imported",
+          "type": 1,
+          "flags": 4
+        },
+        {
+          "id": "11:3576152324813640615",
+          "name": "updateTime",
+          "type": 6,
+          "flags": 4
+        }
+      ],
+      "relations": []
+    },
+    {
+      "id": "5:3127365400977839487",
+      "lastPropertyId": "3:159392790795948698",
+      "name": "BookRecordEntity",
+      "properties": [
+        {
+          "id": "1:2117690397141972014",
+          "name": "bookId",
+          "type": 6,
+          "flags": 1
+        },
+        {
+          "id": "2:8250699493690247468",
+          "name": "chapter",
+          "type": 5,
+          "flags": 4
+        },
+        {
+          "id": "3:159392790795948698",
+          "name": "pagePos",
+          "type": 5,
+          "flags": 4
+        }
+      ],
+      "relations": []
+    }
+  ],
+  "lastEntityId": "5:3127365400977839487",
+  "lastIndexId": "1:4610493545303236605",
+  "lastRelationId": "0:0",
+  "lastSequenceId": "0:0",
+  "modelVersion": 5,
+  "modelVersionParserMinimum": 5,
+  "retiredEntityUids": [
+    7164193902621453096,
+    5695608698726171594
+  ],
+  "retiredIndexUids": [],
+  "retiredPropertyUids": [
+    684565272664148237,
+    3789330131051246853,
+    186461370185796479,
+    4707981060154828142,
+    57608093382724260,
+    8085549421484883527,
+    2143268129347659096,
+    8850236285729070867,
+    605851395330359397,
+    1787201581823919726,
+    3987420337679126185
+  ],
+  "retiredRelationUids": [],
+  "version": 1
+}

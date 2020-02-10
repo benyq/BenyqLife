@@ -14,6 +14,9 @@ android {
         targetSdkVersion root_android.targetSdkVersion
         versionCode root_android.versionCode
         versionName root_android.versionName
+
+        vectorDrawables.useSupportLibrary true
+
     }
 
     buildTypes {
@@ -50,7 +53,7 @@ dependencies {
     kapt root_dependencies.arouter_compiler
     api root_dependencies.autosize
     api root_dependencies.glide
-    annotationProcessor root_dependencies.glide_compiler
+    kapt root_dependencies.glide_compiler
     api root_dependencies.material_dialogs
     api root_dependencies.logger
     api root_dependencies.immersionbar
@@ -58,4 +61,14 @@ dependencies {
     api root_dependencies.rxpermissions
     api root_dependencies.matisse
     api root_dependencies.multidex
+    api root_dependencies.mmkv
+    api root_dependencies.viewModel
+    api root_dependencies.navigation_fragment
+    api root_dependencies.navigation_ui
+    api root_dependencies.flexbox
+    api root_dependencies.objectbox
+    api root_dependencies.objectbox_rx
+//    debugApi root_dependencies.objectbrowser_d
+//    api root_dependencies.objectbrowser_r
+
 }

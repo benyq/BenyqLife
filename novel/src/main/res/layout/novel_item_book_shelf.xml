@@ -1,0 +1,75 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android" xmlns:tools="http://schemas.android.com/tools"
+    android:orientation="horizontal"
+    android:layout_width="match_parent"
+    android:layout_height="wrap_content"
+    android:layout_marginBottom="10dp"
+    android:gravity="center_vertical">
+
+    <RelativeLayout android:layout_width="60dp"
+        android:layout_height="80dp"
+        android:layout_marginStart="10dp"
+        android:layout_marginEnd="10dp">
+        <ImageView
+            android:id="@+id/ivBookCover"
+            android:layout_width="match_parent"
+            android:layout_height="match_parent"/>
+
+        <ImageView
+            android:id="@+id/ivBookNew"
+            android:layout_width="20dp"
+            android:layout_height="26dp"
+            android:layout_alignParentEnd="true"
+            android:src="@drawable/novel_ic_book_new"/>
+    </RelativeLayout>
+
+    <LinearLayout
+        android:layout_width="0dp"
+        android:layout_height="wrap_content"
+        android:layout_weight="1"
+        android:orientation="vertical">
+
+        <TextView
+            android:id="@+id/tvBookName"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:textSize="18sp"
+            android:textColor="@color/color2c2c2c"
+            tools:text="完美世界"/>
+
+        <TextView
+            android:id="@+id/tvBookAuthor"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginTop="5dp"
+            android:textColor="@color/color3C4044"
+            android:textSize="14sp"
+            tools:text="作者"/>
+
+        <TextView
+            android:id="@+id/tvBookUpdateTime"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginTop="5dp"
+            android:textColor="@color/color3C4044"
+            android:textSize="14sp"
+            tools:text="11小时前 : 第一百九十二章"/>
+
+        <TextView
+            android:id="@+id/tvBookSource"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginTop="5dp"
+            android:textColor="@color/color3C4044"
+            android:textSize="12sp"
+            tools:text="来源：www.biquge.com"/>
+
+    </LinearLayout>
+
+
+    <CheckBox
+        android:id="@+id/cbSelected"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_gravity="center"/>
+</LinearLayout>

@@ -1,4 +1,4 @@
-include ':app', ':base', ':common'
+include ':app', ':base', ':common', ':novel'
 rootProject.name='BenyqLife'
 
 

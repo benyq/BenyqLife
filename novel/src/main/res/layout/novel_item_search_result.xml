@@ -1,0 +1,89 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="wrap_content"
+    android:padding="15dp"
+    android:orientation="horizontal">
+
+    <ImageView
+        android:id="@+id/ivBookCover"
+        android:layout_width="90dp"
+        android:layout_height="120dp" />
+
+    <LinearLayout
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        android:layout_marginStart="15dp"
+        android:orientation="vertical">
+
+        <TextView
+            android:id="@+id/tvBookName"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:textStyle="bold"
+            tools:text="我命清风赊酒来"
+            android:textColor="@color/color3C4044"
+            android:textSize="18sp" />
+
+        <TextView
+            android:id="@+id/tvBookIntroduction"
+            android:layout_width="wrap_content"
+            android:layout_height="0dp"
+            android:layout_weight="1"
+            android:gravity="center_vertical"
+            android:layout_marginTop="5dp"
+            android:layout_marginBottom="5dp"
+            android:ellipsize="end"
+            tools:text="江湖如舞台前辈我辈后辈争相，恩怨似风不知轻重。剑在手，谁才是起舞之人？"
+            android:textColor="@color/color3C4044"
+            android:textSize="16sp" />
+
+        <LinearLayout
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:gravity="center_vertical"
+            android:padding="2dp"
+            android:orientation="horizontal">
+
+            <ImageView
+                android:layout_width="20dp"
+                android:layout_height="20dp"
+                android:src="@drawable/novel_ic_author"/>
+
+            <TextView
+                android:id="@+id/tvBookAuthor"
+                android:layout_width="0dp"
+                android:layout_weight="1"
+                android:layout_height="wrap_content"
+                android:layout_marginStart="5dp"
+                tools:text="我自听花"
+                android:textColor="@color/color3C4044"
+                android:textSize="14sp" />
+
+
+            <TextView
+                android:id="@+id/tvBookCategory"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:padding="3dp"
+                android:layout_marginEnd="10dp"
+                android:background="@drawable/novel_shape_book_category"
+                android:textColor="@color/color3C4044"
+                tools:text="武侠"/>
+
+            <TextView
+                android:id="@+id/tvUpdateState"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:padding="3dp"
+                android:background="@drawable/novel_shape_book_update_state"
+                android:textColor="@color/red"
+                tools:text="连载"/>
+
+        </LinearLayout>
+
+
+    </LinearLayout>
+
+</LinearLayout>

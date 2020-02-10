@@ -1,0 +1,46 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="wrap_content"
+    android:gravity="center_vertical"
+    android:padding="10dp"
+    android:orientation="horizontal">
+
+    <FrameLayout
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content">
+
+        <CheckBox
+            android:visibility="gone"
+            android:id="@+id/cbLocalBook"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content" />
+
+        <TextView
+            android:id="@+id/tvImported"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="@string/novel_book_imported"
+            android:textColor="@color/color3C4044"
+            android:textSize="18sp"/>
+
+    </FrameLayout>
+
+    <ImageView
+        android:layout_width="60dp"
+        android:layout_height="60dp"
+        android:layout_marginStart="20dp"
+        android:src="@drawable/novel_ic_txt" />
+
+    <TextView
+        android:id="@+id/tvBookName"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginStart="20dp"
+        tools:text="未来水世界"
+        android:textColor="@color/color3C4044"
+        android:textSize="20sp"/>
+
+
+</LinearLayout>
