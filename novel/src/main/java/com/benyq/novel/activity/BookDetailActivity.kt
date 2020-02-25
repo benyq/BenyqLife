@@ -36,6 +36,9 @@ class BookDetailActivity : LifecycleActivity<BookDetailViewModel>() {
 
     override fun initView() {
         super.initView()
+        headerView.setOnBackListener {
+            finish()
+        }
         llSubscribeBook.setOnClickListener {
             //加入书架，后台与本地,通知书架修改（或者返回时刷新都可以）
         }

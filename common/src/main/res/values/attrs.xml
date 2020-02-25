@@ -18,4 +18,15 @@
         <attr name="editview_gravity" format="integer" />
     </declare-styleable>
 
+    <declare-styleable name="HeaderView">
+
+        <attr name="toolbar_title" format="string|reference"/>
+        <attr name="enable_back" format="boolean"/>
+        <attr name="toolbar_right" format="boolean"/>
+        <attr name="toolbar_style" >
+            <enum name="common" value="0" />
+            <enum name="dark" value="1" />
+        </attr>
+    </declare-styleable>
+
 </resources>

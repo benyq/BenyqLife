@@ -1,9 +1,9 @@
 <?xml version="1.0" encoding="utf-8"?>
-<FrameLayout
-    xmlns:android="http://schemas.android.com/apk/res/android"
+<FrameLayout xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
-    android:layout_height="match_parent">
+    android:layout_height="match_parent"
+    xmlns:app="http://schemas.android.com/apk/res-auto">
 
     <RelativeLayout
         android:id="@+id/flContainer"
@@ -17,7 +17,14 @@
 
     </RelativeLayout>
 
-    <include layout="@layout/view_common_toolbar_dark"/>
+
+    <com.benyq.common.ui.widght.HeaderView
+        android:id="@+id/headerView"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        app:toolbar_style="dark"
+        app:toolbar_title=""/>
+
 
     <RelativeLayout
         android:id="@+id/rlController"

@@ -3,10 +3,18 @@
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
     android:orientation="vertical"
     tools:context=".activity.LocalBookActivity">
 
-    <include layout="@layout/view_common_toolbar_dark"/>
+    <com.benyq.common.ui.widght.HeaderView
+        android:id="@+id/headerView"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        app:toolbar_style="dark"
+        app:toolbar_title="导入本地书籍"
+        app:toolbar_right="true"/>
+
 
     <TextView
         android:id="@+id/tvBookSize"
@@ -14,7 +22,7 @@
         android:layout_height="wrap_content"
         android:padding="15dp"
         android:background="@color/color_divier"
-        tools:text="共扫描到26本"
+        android:text="共扫描到 0 本"
         android:textColor="@color/color3C4044"
         android:textSize="14sp"/>
 

@@ -143,6 +143,7 @@ abstract class PageLoader(var mPageView: PageView? = null,
 
     private fun initParams() {
         mPageMode = ReadSettingConfig.turnPageMode
+        mPageStyle = ReadSettingConfig.pageStyle
         mMarginWidth = SizeUtils.dp2px(DEFAULT_MARGIN_HEIGHT)
         mMarginHeight = SizeUtils.dp2px(DEFAULT_MARGIN_HEIGHT)
 

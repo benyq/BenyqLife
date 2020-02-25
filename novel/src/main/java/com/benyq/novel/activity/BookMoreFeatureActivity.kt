@@ -3,6 +3,7 @@ package com.benyq.novel.activity
 import android.content.Context
 import android.content.Intent
 import com.benyq.common.ui.BaseActivity
+import com.benyq.common.ui.widght.HeaderView
 import com.benyq.novel.R
 import kotlinx.android.synthetic.main.novel_activity_more_feature.*
 
@@ -18,10 +19,9 @@ class BookMoreFeatureActivity : BaseActivity() {
     override fun getLayoutId() = R.layout.novel_activity_more_feature
 
     override fun initView() {
-        toolbarBack?.setOnClickListener {
+        headerView.setOnBackListener {
             finish()
         }
-        toolbarTitle?.text = "更多"
 
         ifLocalBook.setOnClickListener {
             //搜索本地小说

@@ -46,13 +46,14 @@ class LocalBookActivity : BaseActivity() {
 
 
     override fun initView() {
-        toolbarTitle?.text = "导入本地书籍"
-        toolbarRight?.let {
-            it.setOnClickListener {
+        headerView.run {
+            setOnBackListener {
+                finish()
+            }
+            setOnOperateListener {
                 scanLocalBook()
             }
-            it.text = "扫描"
-            it.visibility = View.VISIBLE
+            setOperateTitle("扫描")
         }
         rvLocalBooks.layoutManager = LinearLayoutManager(this)
         rvLocalBooks.addItemDecoration(
@@ -86,6 +87,7 @@ class LocalBookActivity : BaseActivity() {
                 }
             }
             LocalBookRepository.addBooks(dataList)
+            finish()
         }
 
     }
@@ -103,11 +105,13 @@ class LocalBookActivity : BaseActivity() {
     }
 
     private fun scanLocalBook() {
+        Log.e("benyq", "Uri ${MediaStore.Files.getContentUri("external")}")
         NormalProgressDialogManager.showLoading(this, false)
         val projection = arrayOf(
             MediaStore.Files.FileColumns._ID,
             MediaStore.Files.FileColumns.DATA,
-            MediaStore.Files.FileColumns.SIZE
+            MediaStore.Files.FileColumns.SIZE,
+            MediaStore.Files.FileColumns.DATE_MODIFIED
         )
         val sql =
             "(" + MediaStore.Files.FileColumns.DATA + " LIKE '%.txt'" + " and " + MediaStore.Files.FileColumns.SIZE + " > 102400)"
@@ -145,7 +149,7 @@ class LocalBookActivity : BaseActivity() {
                     } while (it.moveToNext())
                 }
                 it.close()
-                val text = "共扫描到${dataList.size}本"
+                val text = "共扫描到 ${dataList.size} 本"
                 tvBookSize.text = text
                 mAdapter.setNewData(dataList)
             }, {

@@ -31,7 +31,9 @@ class SearchBookActivity : LifecycleActivity<SearchBookViewModel>() {
 
     override fun initView() {
         super.initView()
-
+        toolbarBack.setOnClickListener {
+            finish()
+        }
         tvSearch.setOnClickListener {
             val key = etQuery.text.toString().trim()
             if (key.isNotEmpty()) {
@@ -65,6 +67,11 @@ class SearchBookActivity : LifecycleActivity<SearchBookViewModel>() {
             mSearchBookData.observe(this@SearchBookActivity, Observer {
                 //跳转到另一个fragment
                 jumpToSearchResult()
+            })
+
+            mSearchBookKey.observe(this@SearchBookActivity, Observer {
+                etQuery.setText(it)
+                etQuery.setSelection(it.length)
             })
         }
     }

@@ -297,7 +297,7 @@ class PageView(context: Context, attributeSet: AttributeSet?, defStyleAttr: Int)
         if (bookInfo.isLocal) {
             mPageLoader = LocalPageLoader(this, bookInfo)
         } else {
-            mPageLoader = NetPageLoader(this, bookInfo)
+            mPageLoader = LocalPageLoader(this, bookInfo)
         }
         // 判断是否 PageView 已经初始化完成
         if (mViewWidth != 0 || mViewHeight != 0) {

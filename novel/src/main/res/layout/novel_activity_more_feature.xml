@@ -7,7 +7,13 @@
     android:orientation="vertical"
     tools:context=".activity.BookMoreFeatureActivity">
 
-    <include layout="@layout/view_common_toolbar_dark"/>
+
+    <com.benyq.common.ui.widght.HeaderView
+        android:id="@+id/headerView"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        app:toolbar_style="dark"
+        app:toolbar_title="更多"/>
 
     <androidx.core.widget.NestedScrollView
         android:layout_width="match_parent"

@@ -44,7 +44,6 @@ class ReadNovelActivity : LifecycleActivity<ReadNovelViewModel>() {
     }
 
     override fun onCreate(savedInstanceState: Bundle?) {
-        super.onCreate(savedInstanceState)
         val bookInfo : BookInfoEntity? = intent.getParcelableExtra(BOOK_INFO)
         if (bookInfo == null) {
             Toast.makeText(this, "缺少参数", Toast.LENGTH_SHORT).show()
@@ -52,12 +51,16 @@ class ReadNovelActivity : LifecycleActivity<ReadNovelViewModel>() {
         }else {
             mBookInfo = bookInfo
         }
+        super.onCreate(savedInstanceState)
     }
 
     override fun getLayoutId() = R.layout.novel_activity_read_novel
 
     override fun initView() {
         super.initView()
+        headerView.setOnBackListener {
+            finish()
+        }
         mPageLoader = pageView.getPageLoader(mBookInfo)
         pageView.setPageTouchListener(object : PageView.PageTouchListener {
             override fun onTouch(): Boolean {
@@ -164,7 +167,7 @@ class ReadNovelActivity : LifecycleActivity<ReadNovelViewModel>() {
     private fun showController(){
         isShowController = !isShowController
 
-        toolbar?.run {
+        headerView.run {
             animate().setDuration(200).translationY(0f).start()
         }
         rlController.animate().setDuration(200).translationY(0f).start()
@@ -173,7 +176,7 @@ class ReadNovelActivity : LifecycleActivity<ReadNovelViewModel>() {
     private fun dismissController(){
         isShowController = !isShowController
 
-        toolbar?.run {
+        headerView.run {
             animate().setDuration(200).translationY(-height.toFloat()).start()
         }
         rlController.animate().setDuration(200).translationY(rlController.height.toFloat()).start()

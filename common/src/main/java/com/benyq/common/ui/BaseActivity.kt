@@ -23,15 +23,9 @@ import com.benyq.common.model.BaseViewModel
  */
 abstract class BaseActivity : AppCompatActivity(){
 
-    var toolbarTitle: TextView? = null
-    var toolbarRight: TextView? = null
-    var toolbarBack: ImageView? = null
-    var toolbar: RelativeLayout? = null
-
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
         setContentView(getLayoutId())
-        initToolbar()
 
         initView()
         initData()
@@ -43,16 +37,6 @@ abstract class BaseActivity : AppCompatActivity(){
     abstract fun initView()
 
     abstract fun initData()
-
-    private fun initToolbar() {
-        toolbar = findViewById(R.id.toolbar)
-        toolbarTitle = findViewById(R.id.toolbarTitle)
-        toolbarBack = findViewById(R.id.toolbarBack)
-        toolbarRight = findViewById(R.id.toolbarRight)
-        toolbarBack?.setOnClickListener {
-            finish()
-        }
-    }
 
     override fun dispatchTouchEvent(ev: MotionEvent?): Boolean {
 
