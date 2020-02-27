@@ -6,6 +6,7 @@ import android.text.TextPaint
 import android.util.Log
 import androidx.core.content.ContextCompat
 import com.benyq.common.ext.ioClose
+import com.benyq.common.ext.loge
 import com.benyq.common.net.RxScheduler
 import com.benyq.novel.ReadSettingConfig
 import com.benyq.novel.StringUtils
@@ -34,13 +35,15 @@ abstract class PageLoader(var mPageView: PageView? = null,
                            */
                           protected val mCollBook : BookInfoEntity) {
     // 当前页面的状态
-    val STATUS_LOADING = 1         // 正在加载
-    val STATUS_FINISH = 2          // 加载完成
-    val STATUS_ERROR = 3           // 加载错误 (一般是网络加载情况)
-    val STATUS_EMPTY = 4           // 空数据
-    val STATUS_PARING = 5          // 正在解析 (装载本地数据)
-    val STATUS_PARSE_ERROR = 6     // 本地文件解析错误(暂未被使用)
-    val STATUS_CATEGORY_EMPTY = 7  // 获取到的目录为空
+    companion object {
+        const val STATUS_LOADING = 1         // 正在加载
+        const val STATUS_FINISH = 2          // 加载完成
+        const val STATUS_ERROR = 3           // 加载错误 (一般是网络加载情况)
+        const val STATUS_EMPTY = 4           // 空数据
+        const val STATUS_PARING = 5          // 正在解析 (装载本地数据)
+        const val STATUS_PARSE_ERROR = 6     // 本地文件解析错误(暂未被使用)
+        const val STATUS_CATEGORY_EMPTY = 7  // 获取到的目录为空
+    }
 
     // 默认的显示参数配置
     private val DEFAULT_MARGIN_HEIGHT = 28F
@@ -138,7 +141,8 @@ abstract class PageLoader(var mPageView: PageView? = null,
         initPaint()
         //初始化pageView
         initPageView()
-
+        // 初始化书籍
+        prepareBook()
     }
 
     private fun initParams() {
@@ -317,6 +321,21 @@ abstract class PageLoader(var mPageView: PageView? = null,
         openChapter()
     }
 
+
+    /**
+     * 跳转到指定的页
+     *
+     * @param pos
+     */
+    fun skipToPage(pos: Int): Boolean {
+        if (!isChapterListPrepare) {
+            return false
+        }
+        mCurPage = getCurPage(pos)
+        mPageView?.drawCurPage(false)
+        return true
+    }
+
     /**
      * 翻到上一页
      *
@@ -363,7 +382,7 @@ abstract class PageLoader(var mPageView: PageView? = null,
      * @param textSize:单位为 px。
      */
     fun setTipTextSize(textSize: Int) {
-        mTipPaint?.textSize = textSize.toFloat()
+        mTipPaint.textSize = textSize.toFloat()
 
         // 如果屏幕大小加载完成
         mPageView?.drawCurPage(false)
@@ -412,6 +431,7 @@ abstract class PageLoader(var mPageView: PageView? = null,
         isFirstOpen = false
 
         if (!mPageView!!.isPrepare) {
+            loge("mPageView 未准备")
             return
         }
 
@@ -419,6 +439,7 @@ abstract class PageLoader(var mPageView: PageView? = null,
         if (!isChapterListPrepare) {
             mStatus = STATUS_LOADING
             mPageView?.drawCurPage(false)
+            loge("mPageView 如果章节目录没有准备好")
             return
         }
 
@@ -426,6 +447,7 @@ abstract class PageLoader(var mPageView: PageView? = null,
         if (mChapterList.isNullOrEmpty()) {
             mStatus = STATUS_CATEGORY_EMPTY
             mPageView?.drawCurPage(false)
+            loge("mPageView 如果获取到的章节目录为空")
             return
         }
 
@@ -448,7 +470,6 @@ abstract class PageLoader(var mPageView: PageView? = null,
         } else {
             mCurPage = TxtPage()
         }
-
         mPageView?.drawCurPage(false)
     }
 
@@ -657,6 +678,7 @@ abstract class PageLoader(var mPageView: PageView? = null,
         }).compose(RxScheduler.rxScheduler()).subscribe({
             mNextPageList = it as MutableList<TxtPage>?
         }, {
+            it.printStackTrace()
             Log.e("benyq", "preLoadNextChapter ${it.message}")
         })
     }
@@ -748,7 +770,7 @@ abstract class PageLoader(var mPageView: PageView? = null,
         var showTitle = true // 是否展示标题
         var paragraph = chapter.title//默认展示标题
         try {
-            while (showTitle || br.readLine().also { paragraph = it } != null) {
+            while (showTitle || br.readLine()?.also { paragraph = it } != null) {
 //                paragraph = StringUtils.convertCC(paragraph, mContext)
                 // 重置段落
                 if (!showTitle) {
@@ -1065,7 +1087,7 @@ abstract class PageLoader(var mPageView: PageView? = null,
 
     fun drawPage(nextBitmap: Bitmap, isUpdate: Boolean) {
         drawBackground(mPageView!!.getBgBitmap(), isUpdate)
-        if (isUpdate) {
+        if (!isUpdate) {
             drawContent(nextBitmap)
         }
         //更新绘制

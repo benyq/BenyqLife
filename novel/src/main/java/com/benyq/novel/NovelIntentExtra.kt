@@ -9,6 +9,10 @@ package com.benyq.novel
 object NovelIntentExtra {
     const val chapterId = "novelChapterId"
     const val bookId = "novelBookId"
+    /**
+     * 小说章节位置
+     */
+    const val chapterPos = "novelChapterPos"
 
     const val bookInfo = "bookInfo"
 }

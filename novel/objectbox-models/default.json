@@ -138,14 +138,14 @@
     },
     {
       "id": "5:3127365400977839487",
-      "lastPropertyId": "3:159392790795948698",
+      "lastPropertyId": "4:6165427283352589998",
       "name": "BookRecordEntity",
       "properties": [
         {
           "id": "1:2117690397141972014",
           "name": "bookId",
           "type": 6,
-          "flags": 1
+          "flags": 4
         },
         {
           "id": "2:8250699493690247468",
@@ -158,6 +158,12 @@
           "name": "pagePos",
           "type": 5,
           "flags": 4
+        },
+        {
+          "id": "4:6165427283352589998",
+          "name": "id",
+          "type": 6,
+          "flags": 1
         }
       ],
       "relations": []

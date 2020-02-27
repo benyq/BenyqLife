@@ -50,19 +50,19 @@ class SearchBookCommonFragment : LifecycleFragment<SearchBookViewModel>() {
     }
 
     override fun dataObserver() {
-        mViewModel.mHotBookData.observe(this, Observer {
+        mViewModel.mHotBookData.observe(viewLifecycleOwner, Observer {
             mHotBookAdapter.setNewData(it)
         })
 
-        mViewModel.mAutoCompleteData.observe(this, Observer {
+        mViewModel.mAutoCompleteData.observe(viewLifecycleOwner, Observer {
             nsvCommon.visibility = View.GONE
         })
 
-        mViewModel.mSearchBackData.observe(this, Observer {
+        mViewModel.mSearchBackData.observe(viewLifecycleOwner, Observer {
             nsvCommon.visibility = View.VISIBLE
         })
 
-        mViewModel.mSearchHistoryData.observe(this, Observer {
+        mViewModel.mSearchHistoryData.observe(viewLifecycleOwner, Observer {
             addSearchHistory(it)
         })
     }

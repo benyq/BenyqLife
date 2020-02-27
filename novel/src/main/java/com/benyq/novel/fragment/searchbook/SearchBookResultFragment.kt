@@ -32,7 +32,7 @@ class SearchBookResultFragment : LifecycleFragment<SearchBookViewModel>() {
     }
 
     override fun dataObserver() {
-        mViewModel.mSearchBookData.observe(this, Observer {
+        mViewModel.mSearchBookData.observe(viewLifecycleOwner, Observer {
             mSearchResultAdapter.setNewData(it)
         })
     }

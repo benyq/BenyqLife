@@ -5,7 +5,7 @@
   "entities": [
     {
       "id": "1:6419752316572126555",
-      "lastPropertyId": "9:8813171389350271289",
+      "lastPropertyId": "12:6653666411844010274",
       "name": "BookChapterEntity",
       "properties": [
         {
@@ -35,9 +35,21 @@
           "type": 9
         },
         {
-          "id": "9:8813171389350271289",
-          "name": "customerId",
-          "indexId": "1:4610493545303236605",
+          "id": "10:2592656418161802278",
+          "name": "start",
+          "type": 6,
+          "flags": 4
+        },
+        {
+          "id": "11:2423843376962275976",
+          "name": "end",
+          "type": 6,
+          "flags": 4
+        },
+        {
+          "id": "12:6653666411844010274",
+          "name": "bookInfoId",
+          "indexId": "2:1410731873339631206",
           "type": 11,
           "flags": 1548,
           "relationTarget": "BookInfoEntity"
@@ -47,7 +59,7 @@
     },
     {
       "id": "3:2641367476756094728",
-      "lastPropertyId": "13:6526975186504452735",
+      "lastPropertyId": "14:1181851598571380856",
       "name": "BookInfoEntity",
       "properties": [
         {
@@ -114,6 +126,12 @@
           "name": "readTime",
           "type": 6,
           "flags": 4
+        },
+        {
+          "id": "14:1181851598571380856",
+          "name": "isUpdate",
+          "type": 1,
+          "flags": 4
         }
       ],
       "relations": []
@@ -146,7 +164,7 @@
     }
   ],
   "lastEntityId": "5:3127365400977839487",
-  "lastIndexId": "1:4610493545303236605",
+  "lastIndexId": "2:1410731873339631206",
   "lastRelationId": "0:0",
   "lastSequenceId": "0:0",
   "modelVersion": 5,
@@ -155,7 +173,9 @@
     7164193902621453096,
     5695608698726171594
   ],
-  "retiredIndexUids": [],
+  "retiredIndexUids": [
+    4610493545303236605
+  ],
   "retiredPropertyUids": [
     684565272664148237,
     3789330131051246853,
@@ -168,7 +188,8 @@
     605851395330359397,
     1787201581823919726,
     3987420337679126185,
-    3576152324813640615
+    3576152324813640615,
+    8813171389350271289
   ],
   "retiredRelationUids": [],
   "version": 1

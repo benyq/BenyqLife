@@ -4,10 +4,12 @@ import android.content.Context
 import android.graphics.Bitmap
 import android.graphics.Canvas
 import android.graphics.RectF
+import android.transition.Slide
 import android.util.AttributeSet
 import android.view.MotionEvent
 import android.view.View
 import android.view.ViewConfiguration
+import com.benyq.common.ext.loge
 import com.benyq.novel.book.animation.*
 import com.benyq.novel.local.database.enity.BookInfoEntity
 
@@ -104,6 +106,10 @@ class PageView(context: Context, attributeSet: AttributeSet?, defStyleAttr: Int)
                 NonePageAnim(mViewWidth, mViewHeight, this, mPageAnimListener)
             PageMode.COVER -> mPageAnim =
                 CoverPageAnim(mViewWidth, mViewHeight, this, mPageAnimListener)
+            PageMode.SLIDE -> mPageAnim =
+                SlidePageAnim(mViewWidth, mViewHeight, this, mPageAnimListener)
+            PageMode.SIMULATION -> mPageAnim = SimulationPageAnim(mViewWidth, mViewHeight, this, mPageAnimListener)
+
             else -> NonePageAnim(mViewWidth, mViewHeight, this, mPageAnimListener)
 
         }
@@ -218,6 +224,12 @@ class PageView(context: Context, attributeSet: AttributeSet?, defStyleAttr: Int)
 
     }
 
+    override fun computeScroll() {
+        //进行滑动
+        mPageAnim!!.scrollAnim()
+        super.computeScroll()
+    }
+
     override fun onDetachedFromWindow() {
         super.onDetachedFromWindow()
         mPageAnim?.abortAnim()
@@ -259,7 +271,6 @@ class PageView(context: Context, attributeSet: AttributeSet?, defStyleAttr: Int)
      */
     fun drawCurPage(isUpdate: Boolean) {
         if (!isPrepare) return
-
 //        if (!isUpdate) {
 //            if (mPageAnim is ScrollPageAnim) {
 //                (mPageAnim as ScrollPageAnim).resetBitmap()

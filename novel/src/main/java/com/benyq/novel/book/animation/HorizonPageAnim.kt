@@ -5,6 +5,7 @@ import android.graphics.Canvas
 import android.view.MotionEvent
 import android.view.View
 import android.view.ViewConfiguration
+import com.benyq.common.ext.loge
 import kotlin.math.abs
 
 /**

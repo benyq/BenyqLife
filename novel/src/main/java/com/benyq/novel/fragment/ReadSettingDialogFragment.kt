@@ -1,4 +1,4 @@
-package com.benyq.benyqbookreader.ui.fragment
+package com.benyq.novel.fragment
 
 import android.app.Activity
 import android.graphics.Color
@@ -11,10 +11,12 @@ import androidx.fragment.app.FragmentManager
 import androidx.recyclerview.widget.LinearLayoutManager
 import com.benyq.common.ui.BaseDialogFragment
 import com.benyq.novel.R
+import com.benyq.novel.ReadSettingConfig
 import com.benyq.novel.adapter.ReadBgColorAdapter
+import com.benyq.novel.book.page.PageLoader
+import com.benyq.novel.book.page.PageMode
 import com.blankj.utilcode.util.BrightnessUtils
 import com.blankj.utilcode.util.ScreenUtils.getScreenWidth
-import com.blankj.utilcode.util.ScreenUtils.setFullScreen
 import kotlinx.android.synthetic.main.novel_dialog_read_setting.*
 
 /**
@@ -26,12 +28,15 @@ import kotlinx.android.synthetic.main.novel_dialog_read_setting.*
 class ReadSettingDialogFragment : BaseDialogFragment() {
 
     companion object {
-        fun getInstance(): ReadSettingDialogFragment {
-            return ReadSettingDialogFragment()
+        fun getInstance(pageLoader: PageLoader): ReadSettingDialogFragment {
+            return ReadSettingDialogFragment().apply {
+                mPageLoader = pageLoader
+            }
         }
     }
 
     private val mColors = arrayListOf("#008577", "#00574B", "#D81B60")
+    private lateinit var mPageLoader: PageLoader
 
     private var mTextFontSize = 15
 
@@ -54,10 +59,25 @@ class ReadSettingDialogFragment : BaseDialogFragment() {
                 setBrightness(sbReadSettingBrightness.progress)
             }
         })
+        readSettingRgPageMode.setOnCheckedChangeListener { group, checkedId ->
+            val pageMode: PageMode
+            when(checkedId) {
+                R.id.read_setting_rb_simulation -> pageMode = PageMode.SIMULATION
 
+                R.id.read_setting_rb_cover -> pageMode = PageMode.COVER
+
+                R.id.read_setting_rb_slide -> pageMode = PageMode.SLIDE
+
+                R.id.read_setting_rb_none -> pageMode = PageMode.NONE
+
+                else -> pageMode = PageMode.NONE
+            }
+            mPageLoader.setPageMode(pageMode)
+        }
         cbReadSettingAuto.setOnCheckedChangeListener { buttonView, isChecked ->
             if (isChecked) {
                 //跟随系统亮度
+
             } else {
                 setBrightness(sbReadSettingBrightness.progress)
             }
@@ -88,6 +108,10 @@ class ReadSettingDialogFragment : BaseDialogFragment() {
             mAdapter.index = position
             mAdapter.notifyDataSetChanged()
         }
+
+        mTextFontSize = ReadSettingConfig.fontSize / 3
+        setFontSize()
+        initPageMode()
     }
 
     override fun onStart() {
@@ -113,6 +137,7 @@ class ReadSettingDialogFragment : BaseDialogFragment() {
      * 设置屏幕亮度
      */
     private fun setBrightness(light: Int) {
+        ReadSettingConfig.brightness = light
         BrightnessUtils.setWindowBrightness((mContext as Activity).window, light)
     }
 
@@ -121,5 +146,16 @@ class ReadSettingDialogFragment : BaseDialogFragment() {
      */
     private fun setFontSize() {
         tvReadSettingFontSize.text = "$mTextFontSize"
+        mPageLoader.setTextSize(mTextFontSize * 3)
+    }
+
+    private fun initPageMode() {
+        when (ReadSettingConfig.turnPageMode) {
+            PageMode.SIMULATION -> read_setting_rb_simulation.isChecked = true
+            PageMode.COVER -> read_setting_rb_cover.isChecked = true
+            PageMode.SLIDE -> read_setting_rb_slide.isChecked = true
+            PageMode.NONE -> read_setting_rb_none.isChecked = true
+            PageMode.SCROLL -> read_setting_rb_scroll.isChecked = true
+        }
     }
 }

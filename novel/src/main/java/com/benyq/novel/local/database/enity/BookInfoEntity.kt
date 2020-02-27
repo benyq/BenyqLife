@@ -65,7 +65,7 @@ data class BookInfoEntity(
     var readTime: Long = System.currentTimeMillis()
 
 ) : Parcelable {
-    @Backlink
+    @Backlink(to = "bookInfo")
     @IgnoredOnParcel
     var bookChapters: ToMany<BookChapterEntity>? = null
 }

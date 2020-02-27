@@ -9,9 +9,9 @@ import java.lang.reflect.ParameterizedType
  * description:
  */
 
-fun <T> getClass(t: Any): Class<T> {
+fun <T> getClass(t: Any, index: Int = 0): Class<T> {
     // 通过反射 获取父类泛型 (T) 对应 Class类
     return (t.javaClass.genericSuperclass as ParameterizedType)
-        .actualTypeArguments[0]
+        .actualTypeArguments[index]
             as Class<T>
 }

@@ -44,4 +44,8 @@ object LocalBookRepository {
             .orderDesc(BookInfoEntity_.readTime)
             .build())
     }
+
+    fun getBookInfo(bookId: Long): BookInfoEntity? {
+        return bookInfoBox.get(bookId)
+    }
 }

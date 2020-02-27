@@ -72,8 +72,8 @@
             android:padding="10dp">
 
             <ImageView
-                android:layout_width="30dp"
-                android:layout_height="30dp"
+                android:layout_width="20dp"
+                android:layout_height="20dp"
                 android:src="@drawable/novel_ic_refresh" />
 
             <TextView
@@ -82,9 +82,11 @@
                 android:layout_marginStart="10dp"
                 android:text="刷新"
                 android:textColor="@color/color3C4044"
-                android:textSize="25sp" />
+                android:textSize="20sp" />
 
         </LinearLayout>
+
+        <View style="@style/novel_thin_divider_horizontal"/>
 
         <LinearLayout
             android:id="@+id/llSort"
@@ -96,17 +98,18 @@
             android:padding="10dp">
 
             <ImageView
-                android:layout_width="30dp"
-                android:layout_height="30dp"
+                android:layout_width="20dp"
+                android:layout_height="20dp"
                 android:src="@drawable/novel_ic_sort" />
 
             <TextView
+                android:id="@+id/tvSort"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 android:layout_marginStart="10dp"
                 android:text="倒序"
                 android:textColor="@color/color3C4044"
-                android:textSize="25sp" />
+                android:textSize="20sp" />
 
         </LinearLayout>
 

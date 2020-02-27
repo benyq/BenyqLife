@@ -1,18 +1,23 @@
 package com.benyq.novel.activity
 
+import android.annotation.SuppressLint
 import android.content.Context
 import android.content.Intent
-import androidx.appcompat.app.AppCompatActivity
 import android.os.Bundle
+import android.view.View.GONE
+import android.view.View.VISIBLE
+import android.view.animation.Animation
+import android.view.animation.AnimationUtils
 import android.widget.SeekBar
 import android.widget.Toast
 import com.afollestad.materialdialogs.MaterialDialog
-import com.benyq.benyqbookreader.ui.fragment.ReadSettingDialogFragment
-import com.benyq.common.ext.hideKeyBoard
+import com.benyq.novel.fragment.ReadSettingDialogFragment
 import com.benyq.common.ui.LifecycleActivity
+import com.benyq.novel.NovelIntentExtra
 import com.benyq.novel.R
 import com.benyq.novel.book.page.PageLoader
 import com.benyq.novel.book.page.PageView
+import com.benyq.novel.book.page.TxtChapter
 import com.benyq.novel.local.database.enity.BookInfoEntity
 import com.benyq.novel.model.readnovel.ReadNovelViewModel
 import kotlinx.android.synthetic.main.novel_activity_read_novel.*
@@ -34,13 +39,16 @@ class ReadNovelActivity : LifecycleActivity<ReadNovelViewModel>() {
             })
         }
     }
-
-    private var isShowController = true
+    private val bookChapterRequestCode = 11
     private lateinit var mBookInfo: BookInfoEntity
     private lateinit var mPageLoader: PageLoader
-
+    private lateinit var mTopInAnim: Animation
+    private lateinit var mTopOutAnim: Animation
+    private lateinit var mBottomInAnim: Animation
+    private lateinit var mBottomOutAnim: Animation
+    private var mChapterPos = 0
     private val mReadSettingDialog by lazy {
-        ReadSettingDialogFragment.getInstance()
+        ReadSettingDialogFragment.getInstance(mPageLoader)
     }
 
     override fun onCreate(savedInstanceState: Bundle?) {
@@ -58,22 +66,48 @@ class ReadNovelActivity : LifecycleActivity<ReadNovelViewModel>() {
 
     override fun initView() {
         super.initView()
+        initMenuAnim()
+
+//        rlController.visibility = GONE
+//        headerView.visibility = GONE
+
         headerView.setOnBackListener {
             finish()
         }
         mPageLoader = pageView.getPageLoader(mBookInfo)
-        pageView.setPageTouchListener(object : PageView.PageTouchListener {
-            override fun onTouch(): Boolean {
-                dismissController()
-                return true
+        mPageLoader.setOnPageChangeListener(object: PageLoader.OnPageChangeListener {
+            override fun requestChapters(requestChapters: List<TxtChapter>) {
+
             }
 
+            override fun onCategoryFinish(chapters: List<TxtChapter>) {
+                hideAndShowController()
+            }
+
+            override fun onPageCountChange(count: Int) {
+                chapterSeekBar.max = 0.coerceAtLeast(count - 1)
+                chapterSeekBar.progress = 0
+                // 如果处于错误状态，那么就冻结使用
+                chapterSeekBar.isEnabled =
+                    !(mPageLoader.getPageStatus() == PageLoader.STATUS_LOADING || mPageLoader.getPageStatus() == PageLoader.STATUS_ERROR)
+                tvReadPageTip.visibility = GONE
+
+            }
+
+            override fun onPageChange(pos: Int) {
+                chapterSeekBar.progress = pos
+            }
+
+            override fun onChapterChange(pos: Int) {
+                mChapterPos = pos
+            }
+
+        })
+        pageView.setPageTouchListener(object : PageView.PageTouchListener {
+            override fun onTouch() = !dismissController()
+
             override fun center() {
-                if (isShowController){
-                    dismissController()
-                }else {
-                    showController()
-                }
+                hideAndShowController()
             }
 
             override fun prePage() {
@@ -87,26 +121,17 @@ class ReadNovelActivity : LifecycleActivity<ReadNovelViewModel>() {
 
         })
 
-//        tvLastChapter.setOnClickListener {
-//            val lastChapter = mChapterList.indexOf(mCurrentChapter)
-//            if (lastChapter == 0){
-//                toast(R.string.current_first_chapter)
-//            }else {
-//                changeCurrentChapter(lastChapter - 1)
-//            }
-//        }
-//
-//        tvNextChapter.setOnClickListener {
-//            val nextChapter = mChapterList.indexOf(mCurrentChapter)
-//            if (nextChapter == mChapterList.size - 1){
-//                toast(R.string.current_final_chapter)
-//            }else {
-//                changeCurrentChapter(nextChapter + 1)
-//            }
-//        }
+        tvLastChapter.setOnClickListener {
+           mPageLoader.skipPreChapter()
+        }
+
+        tvNextChapter.setOnClickListener {
+            mPageLoader.skipNextChapter()
+        }
 
         llBookChapter.setOnClickListener {
-            BookChapterActivity.goto(this, 0, 0)
+            BookChapterActivity.goto(this, mBookInfo.id, mChapterPos, bookChapterRequestCode)
+            hideAndShowController()
         }
 
         chapterSeekBar.setOnSeekBarChangeListener(object : SeekBar.OnSeekBarChangeListener {
@@ -114,17 +139,28 @@ class ReadNovelActivity : LifecycleActivity<ReadNovelViewModel>() {
             }
 
             override fun onStopTrackingTouch(seekBar: SeekBar?) {
-//                val bookChapterIndex = chapterSeekBar.progress * mChapterList.size / 100
-//                changeCurrentChapter(bookChapterIndex, true)
+                //进行切换
+                val pagePos = chapterSeekBar.progress
+                if (pagePos != mPageLoader.getPagePos()) {
+                    mPageLoader.skipToPage(pagePos)
+                }
+                //隐藏提示
+                tvReadPageTip.visibility = GONE
             }
 
+            @SuppressLint("SetTextI18n")
             override fun onProgressChanged(seekBar: SeekBar?, progress: Int, fromUser: Boolean) {
+                if (headerView.visibility == VISIBLE) {
+                    //显示标题
+                    tvReadPageTip.text = "${progress + 1}/${chapterSeekBar.max + 1}"
+                    tvReadPageTip.visibility = VISIBLE
+                }
             }
         })
 
         llSettings.setOnClickListener {
             mReadSettingDialog.showDialog(supportFragmentManager)
-            dismissController()
+            hideAndShowController()
         }
     }
 
@@ -134,18 +170,46 @@ class ReadNovelActivity : LifecycleActivity<ReadNovelViewModel>() {
 
 
     override fun initData() {
+        if (mBookInfo.imported) {
+            mPageLoader.refreshChapterList()
+        }
     }
 
-    private fun changeCurrentChapter(index: Int, progress: Boolean = false){
-//        mCurrentIndex = index
-//        mChapterList.forEachIndexed { i, booKChapterEntity ->
-//            booKChapterEntity.selected = index == i
-//        }
-//        mCurrentChapter = mChapterList[index]
-//        mViewModel.getChapterContent(mBookDetail.bookId, mCurrentChapter.linkUrl)
-//        if (!progress){
-//            chapterSeekBar.progress = mCurrentIndex * 100 / mChapterList.size
-//        }
+    override fun onPause() {
+        super.onPause()
+        if (mBookInfo.imported) {
+            mPageLoader.saveRecord()
+        }
+    }
+
+    override fun onDestroy() {
+        super.onDestroy()
+        mPageLoader.closeBook()
+    }
+
+    override fun onActivityResult(requestCode: Int, resultCode: Int, data: Intent?) {
+        super.onActivityResult(requestCode, resultCode, data)
+        if (requestCode == bookChapterRequestCode) {
+            data?.getIntExtra(NovelIntentExtra.chapterPos, -1)?.apply {
+                if (this >= 0) {
+                    mPageLoader.skipToChapter(this)
+                }
+            }
+        }
+    }
+
+    //初始化菜单动画
+    private fun initMenuAnim() {
+        mTopInAnim = AnimationUtils.loadAnimation(this, R.anim.slide_top_in)
+        mTopOutAnim =
+            AnimationUtils.loadAnimation(this, R.anim.slide_top_out)
+        mBottomInAnim =
+            AnimationUtils.loadAnimation(this, R.anim.slide_bottom_in)
+        mBottomOutAnim =
+            AnimationUtils.loadAnimation(this, R.anim.slide_bottom_out)
+        //退出的速度要快
+        mTopOutAnim.duration = 200
+        mBottomOutAnim.duration = 200
     }
 
     private fun showWhetherAddShelf(){
@@ -163,22 +227,29 @@ class ReadNovelActivity : LifecycleActivity<ReadNovelViewModel>() {
             }.show()
 
     }
-
-    private fun showController(){
-        isShowController = !isShowController
-
-        headerView.run {
-            animate().setDuration(200).translationY(0f).start()
+    private fun dismissController(): Boolean{
+        if (rlController.visibility == VISIBLE) {
+            hideAndShowController()
+            return true
         }
-        rlController.animate().setDuration(200).translationY(0f).start()
+        return false
     }
 
-    private fun dismissController(){
-        isShowController = !isShowController
+    private fun hideAndShowController() {
+        if (rlController.visibility == VISIBLE) {
 
-        headerView.run {
-            animate().setDuration(200).translationY(-height.toFloat()).start()
+            headerView.startAnimation(mTopOutAnim)
+            rlController.startAnimation(mBottomOutAnim)
+            tvReadPageTip.visibility = GONE
+            rlController.visibility = GONE
+            headerView.visibility = GONE
+
+        }else {
+            rlController.visibility = VISIBLE
+            headerView.visibility = VISIBLE
+            headerView.startAnimation(mTopInAnim)
+            rlController.startAnimation(mBottomInAnim)
         }
-        rlController.animate().setDuration(200).translationY(rlController.height.toFloat()).start()
+
     }
 }

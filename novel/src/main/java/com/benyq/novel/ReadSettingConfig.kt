@@ -19,7 +19,7 @@ object ReadSettingConfig {
     var brightness by MMKVValue("novelBrightness", 0)
     //阅读界面亮度随系统
     var autoBrightness by MMKVValue("novelAutoBrightness", false)
-    var fontSize by MMKVValue("novelFontSize", 16)
+    var fontSize by MMKVValue("novelFontSize", 51)
     //是否使用系统字体大小
     var isSystemFontSize by MMKVValue("novelIsSystemFontSize", false)
     var readBackground by MMKVValue("novelReadBackground", 0xff00ff)

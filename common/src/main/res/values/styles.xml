@@ -20,6 +20,18 @@
         <item name="android:background">@color/color_divier</item>
     </style>
 
+    <style name="novel_thin_divider_horizontal">
+        <item name="android:layout_width">1dp</item>
+        <item name="android:layout_height">match_parent</item>
+        <item name="android:background">@color/color_divier</item>
+    </style>
+
+    <style name="novel_stronger_divider_horizontal">
+        <item name="android:layout_width">10dp</item>
+        <item name="android:layout_height">match_parent</item>
+        <item name="android:background">@color/color_divier</item>
+    </style>
+
     <style name="dialog_style" parent="@android:style/Theme.Dialog">
         <item name="android:windowFrame">@null</item>
         <!--  边框-->

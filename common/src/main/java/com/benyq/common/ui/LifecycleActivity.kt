@@ -15,11 +15,10 @@ abstract class LifecycleActivity<T : BaseViewModel<*>> : BaseActivity(){
     lateinit var mViewModel : T
 
     override fun initView() {
-        mViewModel =  ViewModelProvider(this).get(getClass(this))
+        mViewModel =  ViewModelProvider(this).get(if (dataBindingEnabled) getClass(this, 1) else getClass(this))
 
         //设置view的observer
         dataObserver()
-
     }
 
     abstract fun dataObserver()

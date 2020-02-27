@@ -1,19 +1,14 @@
 package com.benyq.common.ui
 
-import android.content.Context
 import android.os.Bundle
-import android.os.PersistableBundle
 import android.view.MotionEvent
 import android.view.View
-import android.view.inputmethod.InputMethodManager
 import android.widget.EditText
-import android.widget.ImageView
-import android.widget.RelativeLayout
-import android.widget.TextView
 import androidx.appcompat.app.AppCompatActivity
+import androidx.databinding.DataBindingUtil
+import androidx.databinding.ViewDataBinding
 import com.benyq.common.R
 import com.benyq.common.ext.hideKeyBoard
-import com.benyq.common.model.BaseViewModel
 
 /**
  * @author benyq
@@ -23,9 +18,15 @@ import com.benyq.common.model.BaseViewModel
  */
 abstract class BaseActivity : AppCompatActivity(){
 
+    protected var dataBindingEnabled = false
+
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
-        setContentView(getLayoutId())
+        if (dataBindingEnabled) {
+            initDataBinging()
+        }else {
+            setContentView(getLayoutId())
+        }
 
         initView()
         initData()
@@ -37,6 +38,9 @@ abstract class BaseActivity : AppCompatActivity(){
     abstract fun initView()
 
     abstract fun initData()
+
+    open fun initDataBinging() {}
+
 
     override fun dispatchTouchEvent(ev: MotionEvent?): Boolean {
 

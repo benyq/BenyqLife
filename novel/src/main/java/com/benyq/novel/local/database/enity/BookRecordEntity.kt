@@ -12,5 +12,6 @@ import io.objectbox.annotation.Id
 @Entity
 data class BookRecordEntity(
     @Id
+    var id: Long = 0,
     var bookId: Long = 0, var chapter: Int = 0, var pagePos: Int = 0
 )

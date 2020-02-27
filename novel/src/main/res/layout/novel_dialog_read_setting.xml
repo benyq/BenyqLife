@@ -106,7 +106,7 @@
     </LinearLayout>
 
     <RadioGroup
-        android:id="@+id/read_setting_rg_page_mode"
+        android:id="@+id/readSettingRgPageMode"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
         android:layout_marginTop="20dp"
@@ -149,10 +149,10 @@
             android:gravity="center"
             android:text="@string/novel_page_turning_slide"
             android:textColor="@color/white"
-            android:textSize="14sp"
-            android:visibility="gone" />
+            android:textSize="14sp" />
 
         <RadioButton
+            android:visibility="gone"
             android:id="@+id/read_setting_rb_scroll"
             android:layout_width="0dp"
             android:layout_height="35dp"

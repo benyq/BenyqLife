@@ -27,11 +27,11 @@ data class BookChapterEntity(
     var chapterIndex: String = "",
     var chapterName: String = "",
     /**
-     * 章节内容原始网页
+     * 章节内容原始网页, 网络
      */
     var contentLink: String = "",
     /**
-     * 章节内容文件名字与位置
+     * 章节内容文件名字与位置, 网络
      */
     var contentFile: String? = null,
 

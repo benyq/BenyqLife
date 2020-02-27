@@ -14,10 +14,10 @@ class BookChapterViewModel : BaseViewModel<BookChapterRepository>() {
 
     val mBookChaptersData by lazy { MutableLiveData<List<BookChapterEntity>>() }
 
-    fun getBookChapters(bookId: Int) {
-        mRepository.getBookChapters(mBookChaptersData)
+    fun getBookChapters(bookId: Long) {
+        mRepository.getBookChapters(bookId, mBookChaptersData)
     }
 
-    fun refreshBookChapter(bookId: Int) {
+    fun refreshBookChapter(bookId: Long) {
     }
 }

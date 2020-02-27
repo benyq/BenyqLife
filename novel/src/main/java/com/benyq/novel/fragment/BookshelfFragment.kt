@@ -52,7 +52,7 @@ class BookshelfFragment : LifecycleFragment<BookShelfViewModel>(){
 
     override fun dataObserver() {
         with(mViewModel) {
-            mShelfBooksData.observe(this@BookshelfFragment, Observer {
+            mShelfBooksData.observe(viewLifecycleOwner, Observer {
                 swipeLayout.isRefreshing = false
                 mAdapter.setNewData(it)
             })
