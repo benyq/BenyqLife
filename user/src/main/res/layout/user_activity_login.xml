@@ -7,6 +7,9 @@
         <variable
             name="vm"
             type="com.benyq.user.model.LoginViewModel" />
+        <variable
+            name="click"
+            type="com.benyq.user.LoginActivity.ClickProxy" />
     </data>
 
     <androidx.constraintlayout.widget.ConstraintLayout
@@ -18,6 +21,8 @@
             android:id="@+id/header"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
+            app:enable_back="false"
+            app:toolbar_title="登录"
             app:layout_constraintTop_toTopOf="parent"/>
 
         <EditText
@@ -45,6 +50,8 @@
             android:layout_height="wrap_content"
             android:layout_marginTop="64dp"
             android:text="登录"
+            android:enabled="@{vm.enableLogin}"
+            android:onClick="@{() -> click.login()}"
             app:layout_constraintEnd_toEndOf="parent"
             app:layout_constraintHorizontal_bias="0.498"
             app:layout_constraintStart_toStartOf="parent"

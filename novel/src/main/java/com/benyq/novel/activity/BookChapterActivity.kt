@@ -44,8 +44,8 @@ class BookChapterActivity : LifecycleActivity<BookChapterViewModel>() {
 
     override fun getLayoutId() = R.layout.novel_activity_book_chapter
 
-    override fun initView() {
-        super.initView()
+    override fun initView(savedInstanceState: Bundle?) {
+        super.initView(savedInstanceState)
         mBookId = intent.getLongExtra(NovelIntentExtra.bookId, -1)
         mChapterPos = intent.getIntExtra(NovelIntentExtra.chapterPos, -1)
 

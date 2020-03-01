@@ -24,7 +24,7 @@ class NovelActivity : BaseActivity() {
 
     override fun getLayoutId() = R.layout.novel_activity_novel
 
-    override fun initView() {
+    override fun initView(savedInstanceState: Bundle?) {
         supportFragmentManager.beginTransaction()
             .add(R.id.flContainer, BookshelfFragment.newInstance(), "BookshelfFragment")
             .commit()

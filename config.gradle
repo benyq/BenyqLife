@@ -40,6 +40,7 @@ ext {
             navigation         : "2.2.0-rc04",
             flexbox            : "2.0.1",
             objectbox          : "2.5.0",
+            noDrawable         : "1.1.1"
     ]
 
     dependencies = [
@@ -89,6 +90,7 @@ ext {
             objectbox          : "io.objectbox:objectbox-kotlin:$versions.objectbox",
             objectbox_rx       : "io.objectbox:objectbox-rxjava:$versions.objectbox",
             objectbrowser_d    : "io.objectbox:objectbox-android-objectbrowser:$versions.objectbox",
-            objectbrowser_r    : "io.objectbox:objectbox-android:$versions.objectbox"
+            objectbrowser_r    : "io.objectbox:objectbox-android:$versions.objectbox",
+            noDrawable         : "com.github.whataa:noDrawable:$versions.noDrawable"
     ]
 }

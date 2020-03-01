@@ -64,8 +64,8 @@ class ReadNovelActivity : LifecycleActivity<ReadNovelViewModel>() {
 
     override fun getLayoutId() = R.layout.novel_activity_read_novel
 
-    override fun initView() {
-        super.initView()
+    override fun initView(savedInstanceState: Bundle?) {
+        super.initView(savedInstanceState)
         initMenuAnim()
 
 //        rlController.visibility = GONE

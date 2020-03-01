@@ -2,6 +2,7 @@ package com.benyq.novel.activity
 
 import android.content.Context
 import android.content.Intent
+import android.os.Bundle
 import com.benyq.common.ui.BaseActivity
 import com.benyq.common.ui.widght.HeaderView
 import com.benyq.novel.R
@@ -18,7 +19,7 @@ class BookMoreFeatureActivity : BaseActivity() {
 
     override fun getLayoutId() = R.layout.novel_activity_more_feature
 
-    override fun initView() {
+    override fun initView(savedInstanceState: Bundle?) {
         headerView.setOnBackListener {
             finish()
         }

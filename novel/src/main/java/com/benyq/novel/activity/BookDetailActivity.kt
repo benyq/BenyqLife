@@ -34,8 +34,8 @@ class BookDetailActivity : LifecycleActivity<BookDetailViewModel>() {
 
     override fun getLayoutId() = R.layout.novel_activity_book_detail
 
-    override fun initView() {
-        super.initView()
+    override fun initView(savedInstanceState: Bundle?) {
+        super.initView(savedInstanceState)
         headerView.setOnBackListener {
             finish()
         }

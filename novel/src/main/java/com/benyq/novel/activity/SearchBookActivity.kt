@@ -2,6 +2,7 @@ package com.benyq.novel.activity
 
 import android.content.Context
 import android.content.Intent
+import android.os.Bundle
 import androidx.core.widget.addTextChangedListener
 import androidx.lifecycle.Observer
 import androidx.navigation.NavController
@@ -29,8 +30,8 @@ class SearchBookActivity : LifecycleActivity<SearchBookViewModel>() {
 
     override fun getLayoutId() = R.layout.novel_activity_search_book
 
-    override fun initView() {
-        super.initView()
+    override fun initView(savedInstanceState: Bundle?) {
+        super.initView(savedInstanceState)
         toolbarBack.setOnClickListener {
             finish()
         }

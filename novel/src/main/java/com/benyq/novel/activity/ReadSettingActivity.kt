@@ -16,7 +16,7 @@ class ReadSettingActivity : BaseActivity() {
 
     override fun getLayoutId() = R.layout.novel_activity_read_setting
 
-    override fun initView() {
+    override fun initView(savedInstanceState: Bundle?) {
 
     }
 

@@ -1,5 +1,6 @@
 package com.benyq.common.ui
 
+import android.os.Bundle
 import androidx.lifecycle.ViewModelProvider
 import com.benyq.common.ext.getClass
 import com.benyq.common.model.BaseViewModel
@@ -14,7 +15,7 @@ abstract class LifecycleActivity<T : BaseViewModel<*>> : BaseActivity(){
 
     lateinit var mViewModel : T
 
-    override fun initView() {
+    override fun initView(savedInstanceState: Bundle?) {
         mViewModel =  ViewModelProvider(this).get(if (dataBindingEnabled) getClass(this, 1) else getClass(this))
 
         //设置view的observer

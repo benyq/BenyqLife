@@ -28,14 +28,14 @@ abstract class BaseActivity : AppCompatActivity(){
             setContentView(getLayoutId())
         }
 
-        initView()
+        initView(savedInstanceState)
         initData()
     }
 
 
     abstract fun getLayoutId(): Int
 
-    abstract fun initView()
+    abstract fun initView(savedInstanceState: Bundle?)
 
     abstract fun initData()
 

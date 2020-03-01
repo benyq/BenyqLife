@@ -3,6 +3,7 @@ package com.benyq.novel.activity
 import android.content.Context
 import android.content.Intent
 import android.database.Cursor
+import android.os.Bundle
 import android.provider.MediaStore
 import android.util.Log
 import android.view.View
@@ -45,7 +46,7 @@ class LocalBookActivity : BaseActivity() {
     override fun getLayoutId() = R.layout.novel_activity_local_book
 
 
-    override fun initView() {
+    override fun initView(savedInstanceState: Bundle?) {
         headerView.run {
             setOnBackListener {
                 finish()

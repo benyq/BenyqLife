@@ -1,6 +1,9 @@
 package com.benyq.common.ui
 
 import android.os.Bundle
+import android.view.LayoutInflater
+import android.view.View
+import android.view.ViewGroup
 import androidx.databinding.DataBindingUtil
 import androidx.databinding.ViewDataBinding
 import com.benyq.common.model.BaseViewModel
@@ -12,7 +15,7 @@ import com.benyq.common.model.BaseViewModel
  * @e-mail 1520063035@qq.com
  * @note 
  */
-abstract class DataBindingActivity<DB: ViewDataBinding, T : BaseViewModel<*>> : LifecycleActivity<T>() {
+abstract class DataBindingFragment <DB: ViewDataBinding, T : BaseViewModel<*>> : LifecycleFragment<T>() {
 
     protected lateinit var dataBind: DB
 
@@ -21,17 +24,16 @@ abstract class DataBindingActivity<DB: ViewDataBinding, T : BaseViewModel<*>> : 
         super.onCreate(savedInstanceState)
     }
 
-    override fun initDataBinging() {
-        dataBind = DataBindingUtil.setContentView(
-            this, getLayoutId())
+    override fun initDataBinging(inflater: LayoutInflater, container: ViewGroup?) : View{
+        dataBind = DataBindingUtil.inflate(inflater, getLayoutId(), container, false)
+        return dataBind.root
     }
 
-    override fun initView(savedInstanceState: Bundle?) {
-        super.initView(savedInstanceState)
+    override fun initView() {
+        super.initView()
         dataBind.lifecycleOwner = this
     }
 
     override fun initData() {
     }
-
 }
