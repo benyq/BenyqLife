@@ -13,7 +13,7 @@ import androidx.fragment.app.Fragment
  * create at 2020/1/12
  * description:
  */
-abstract class BaseFragment : Fragment(){
+abstract class BaseFragment : Fragment() {
 
     lateinit var mContext: Context
     protected var dataBindingEnabled = false
@@ -31,7 +31,7 @@ abstract class BaseFragment : Fragment(){
     ): View? {
         return if (dataBindingEnabled) {
             initDataBinging(inflater, container)
-        }else {
+        } else {
             inflater.inflate(getLayoutId(), container, false)
         }
     }
@@ -47,7 +47,7 @@ abstract class BaseFragment : Fragment(){
 
     abstract fun initView(savedInstanceState: Bundle?)
 
-    open fun initDataBinging(inflater: LayoutInflater, container: ViewGroup?) : View? = null
+    open fun initDataBinging(inflater: LayoutInflater, container: ViewGroup?): View? = null
 
     abstract fun initData()
 }
