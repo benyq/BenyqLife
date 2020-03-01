@@ -1,5 +1,6 @@
 package com.benyq.novel.fragment.searchbook
 
+import android.os.Bundle
 import android.util.Log
 import android.view.View
 import androidx.appcompat.app.AppCompatActivity
@@ -39,8 +40,8 @@ class SearchBookCommonFragment : LifecycleFragment<SearchBookViewModel>() {
 
     override fun getLayoutId() = R.layout.novel_fragment_search_book_common
 
-    override fun initView() {
-        super.initView()
+    override fun initView(savedInstanceState: Bundle?) {
+        super.initView(savedInstanceState)
         initRecyclerView()
 
         tvHistoryClear.setOnClickListener {

@@ -1,5 +1,6 @@
 package com.benyq.novel.fragment.searchbook
 
+import android.os.Bundle
 import androidx.lifecycle.Observer
 import androidx.recyclerview.widget.LinearLayoutManager
 import com.benyq.common.ui.LifecycleFragment
@@ -21,8 +22,8 @@ class SearchBookResultFragment : LifecycleFragment<SearchBookViewModel>() {
 
     override fun getLayoutId() = R.layout.novel_fragment_search_book_result
 
-    override fun initView() {
-        super.initView()
+    override fun initView(savedInstanceState: Bundle?) {
+        super.initView(savedInstanceState)
         rvSearchResult.layoutManager = LinearLayoutManager(mContext)
         rvSearchResult.adapter = mSearchResultAdapter
         mSearchResultAdapter.setOnItemClickListener { adapter, view, position ->

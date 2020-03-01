@@ -1,5 +1,6 @@
 package com.benyq.common.ui
 
+import android.os.Bundle
 import androidx.lifecycle.ViewModelProvider
 import com.benyq.common.ext.getClass
 import com.benyq.common.model.BaseViewModel
@@ -15,7 +16,7 @@ abstract class LifecycleFragment<T : BaseViewModel<*>> : BaseFragment(){
     lateinit var mViewModel : T
 
 
-    override fun initView() {
+    override fun initView(savedInstanceState: Bundle?) {
         initViewModel()
         //设置view的observer
         dataObserver()

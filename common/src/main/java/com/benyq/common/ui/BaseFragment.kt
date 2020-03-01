@@ -39,13 +39,13 @@ abstract class BaseFragment : Fragment(){
 
     override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
         super.onViewCreated(view, savedInstanceState)
-        initView()
+        initView(savedInstanceState)
         initData()
     }
 
     abstract fun getLayoutId(): Int
 
-    abstract fun initView()
+    abstract fun initView(savedInstanceState: Bundle?)
 
     open fun initDataBinging(inflater: LayoutInflater, container: ViewGroup?) : View? = null
 

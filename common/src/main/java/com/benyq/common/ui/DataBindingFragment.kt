@@ -29,8 +29,8 @@ abstract class DataBindingFragment <DB: ViewDataBinding, T : BaseViewModel<*>> :
         return dataBind.root
     }
 
-    override fun initView() {
-        super.initView()
+    override fun initView(savedInstanceState: Bundle?) {
+        super.initView(savedInstanceState)
         dataBind.lifecycleOwner = this
     }
 

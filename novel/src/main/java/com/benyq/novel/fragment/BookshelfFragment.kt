@@ -1,5 +1,6 @@
 package com.benyq.novel.fragment
 
+import android.os.Bundle
 import androidx.lifecycle.Observer
 import androidx.recyclerview.widget.LinearLayoutManager
 import com.benyq.common.ui.LifecycleFragment
@@ -29,8 +30,8 @@ class BookshelfFragment : LifecycleFragment<BookShelfViewModel>(){
 
     override fun getLayoutId() = R.layout.novel_fragment_book_shelf
 
-    override fun initView() {
-        super.initView()
+    override fun initView(savedInstanceState: Bundle?) {
+        super.initView(savedInstanceState)
         ivSearchBook.setOnClickListener {
             SearchBookActivity.goto(mContext)
         }
