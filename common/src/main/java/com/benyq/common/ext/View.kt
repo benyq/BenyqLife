@@ -3,6 +3,8 @@ package com.benyq.common.ext
 import android.content.Context
 import android.view.View
 import android.view.inputmethod.InputMethodManager
+import android.widget.EditText
+import android.widget.TextView
 
 /**
  *
@@ -11,6 +13,24 @@ import android.view.inputmethod.InputMethodManager
  * @e-mail 1520063035@qq.com
  * @note 有关View的拓展方法
  */
+
+/**
+ *
+ * @author benyq
+ * @time 2020/2/29
+ * @e-mail 1520063035@qq.com
+ * @note
+ */
+
+fun EditText.textAndSelection(value: String?) {
+    value?.let {
+        setText(value)
+        setSelection(value.length)
+    }
+
+}
+
+fun TextView.textTrim() = text.toString().trim()
 
 // 关闭软键盘
 fun View.hideKeyBoard() {
@@ -31,6 +51,10 @@ fun View.setDoubleClickListener(block: () -> Unit) {
     this.setOnClickListener { ClickUtil.interval(block) }
 }
 
+//防止重复点击
+fun View.setSingleClickListener(block: () -> Unit) {
+    this.setOnClickListener { ClickUtil.single(id, block) }
+}
 
 fun View.visible() {
     this.visibility = View.VISIBLE
@@ -54,6 +78,7 @@ fun View.gone() {
 object ClickUtil {
 
     private var clickTime: Long = 0
+    private var lastViewId: Int = 0
 
     /**
      *  双击事件
@@ -65,6 +90,23 @@ object ClickUtil {
             clickTime = nowTime
         } else {
             block()
+        }
+    }
+
+    /**
+     *  防止重复点击
+     *  @param duration 两次间隔时间
+     */
+    fun single(vid: Int, block: () -> Unit, duration: Int = 1000) {
+        if (vid != lastViewId) {
+            lastViewId = vid
+            block()
+        }else {
+            val nowTime = System.currentTimeMillis()
+            if (nowTime - clickTime > duration) {
+                clickTime = nowTime
+                block()
+            }
         }
     }
 }

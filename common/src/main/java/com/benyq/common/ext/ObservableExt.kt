@@ -1,11 +1,11 @@
 package com.benyq.common.ext
 
-import com.benyq.common.net.LifeResponse
+import androidx.lifecycle.LifecycleOwner
+import androidx.lifecycle.LiveData
 import com.benyq.common.net.RxScheduler
 import io.reactivex.Observable
 import io.reactivex.Observer
-import io.reactivex.android.schedulers.AndroidSchedulers
-import io.reactivex.schedulers.Schedulers
+import androidx.lifecycle.Observer as lifecycleObserver
 
 /**
  * @author benyq
@@ -16,4 +16,11 @@ import io.reactivex.schedulers.Schedulers
 fun <T> Observable<T>.execute(observer: Observer<T>) {
     this.compose(RxScheduler.rxScheduler())
         .subscribe(observer)
+}
+
+fun <T> LifecycleOwner.lifecycleObserve(liveData: LiveData<T>, action: (it: T) -> Unit) {
+    liveData.observe(this, lifecycleObserver<T> {
+        action(it)
+    })
+
 }

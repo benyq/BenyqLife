@@ -62,4 +62,20 @@ fun bytes2Hex(bts: ByteArray): String {
     return des
 }
 
+fun <T> String.toNumberDefault(default: T) : T {
+    return try {
+        val res: Any = when (default) {
+            is Long -> toLong()
+            is Int -> toInt()
+            is Float -> toFloat()
+            is Double -> toDouble()
+            else ->  throw NumberFormatException("未找到该类型")
+        }
+        res as T
+    }catch (e: NumberFormatException) {
+        loge("number error ${e.message}")
+        default
+    }
+}
+
 

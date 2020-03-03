@@ -6,6 +6,7 @@ import androidx.lifecycle.ViewModelProvider
 import androidx.lifecycle.ViewModelStore
 import androidx.lifecycle.ViewModelStoreOwner
 import com.tencent.mmkv.MMKV
+import kotlin.reflect.KProperty
 
 /**
  * @author benyq
@@ -31,9 +32,10 @@ open class BaseApplication : Application(), ViewModelStoreOwner{
         mAppViewModelStore = ViewModelStore()
         mFactory = ViewModelProvider.AndroidViewModelFactory.getInstance(this)
         MMKV.initialize(this)
+        registerActivityLifecycleCallbacks(ActivityLifecycleCallbacks)
     }
 
-    override fun getViewModelStore() = mAppViewModelStore
+        override fun getViewModelStore() = mAppViewModelStore
 
     open fun getAppViewModelProvider(): ViewModelProvider? {
         return ViewModelProvider(this, getAppFactory())
