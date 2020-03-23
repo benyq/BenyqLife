@@ -51,9 +51,17 @@ fun View.setDoubleClickListener(block: () -> Unit) {
     this.setOnClickListener { ClickUtil.interval(block) }
 }
 
-//防止重复点击
-fun View.setSingleClickListener(block: () -> Unit) {
-    this.setOnClickListener { ClickUtil.single(id, block) }
+inline fun View.setThrottleClickListener(throttle: Long = 500, crossinline onClick: (v: View) ->Unit) {
+    setOnClickListener(object: View.OnClickListener{
+        private var prevClickTime = 0L
+        override fun onClick(v: View?) {
+            val t = System.currentTimeMillis()
+            if (t - throttle > prevClickTime) {
+                prevClickTime = t
+                onClick(this@setThrottleClickListener)
+            }
+        }
+    })
 }
 
 fun View.visible() {
@@ -78,7 +86,6 @@ fun View.gone() {
 object ClickUtil {
 
     private var clickTime: Long = 0
-    private var lastViewId: Int = 0
 
     /**
      *  双击事件
@@ -93,20 +100,4 @@ object ClickUtil {
         }
     }
 
-    /**
-     *  防止重复点击
-     *  @param duration 两次间隔时间
-     */
-    fun single(vid: Int, block: () -> Unit, duration: Int = 1000) {
-        if (vid != lastViewId) {
-            lastViewId = vid
-            block()
-        }else {
-            val nowTime = System.currentTimeMillis()
-            if (nowTime - clickTime > duration) {
-                clickTime = nowTime
-                block()
-            }
-        }
-    }
 }

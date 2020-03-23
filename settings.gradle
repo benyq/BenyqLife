@@ -1,3 +1,10 @@
 include ':app', ':base', ':common', ':novel'
+setBinding(new Binding([gradle: this]))
+evaluate(new File(
+  settingsDir,
+  'wanandroid/.android/include_flutter.groovy'
+))
 rootProject.name='BenyqLife'
 include ':user'
+
+include ':wanandroid'

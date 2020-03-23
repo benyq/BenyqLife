@@ -3,6 +3,8 @@ package com.benyq.novel.activity
 import android.content.Context
 import android.content.Intent
 import android.os.Bundle
+import android.util.Log
+import com.benyq.common.ext.setThrottleClickListener
 import com.benyq.common.ui.BaseActivity
 import com.benyq.common.ui.widght.HeaderView
 import com.benyq.novel.R
@@ -29,12 +31,15 @@ class BookMoreFeatureActivity : BaseActivity() {
             LocalBookActivity.goto(this)
         }
 
-        ifReadSetting.setOnClickListener {
+        ifReadSetting.setThrottleClickListener {
             //阅读设置
+            Log.e("benyq", "点击啦")
+            return@setThrottleClickListener
         }
 
         ifSwapCache.setOnClickListener {
             //清理缓存
+            return@setOnClickListener
         }
 
         ifAbout.setOnClickListener {

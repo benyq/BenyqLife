@@ -1,28 +1,33 @@
 package com.benyq.benyqlife
 
-import android.annotation.SuppressLint
-import androidx.appcompat.app.AppCompatActivity
 import android.os.Bundle
-import android.util.Log
-import com.benyq.common.net.DefaultObserver
-import com.benyq.common.net.LifeApiManager
-import com.benyq.common.net.LifeResponse
-import com.benyq.common.net.RxScheduler
-import io.reactivex.disposables.Disposable
-import io.reactivex.functions.Consumer
+import android.view.ViewGroup
+import android.widget.FrameLayout
+import androidx.appcompat.app.AppCompatActivity
+import io.flutter.embedding.android.FlutterView
+import io.flutter.embedding.engine.FlutterEngine
+import io.flutter.embedding.engine.dart.DartExecutor
+
 
 class MainActivity : AppCompatActivity() {
 
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
         setContentView(R.layout.activity_main)
-        val service = LifeApiManager.createService(WanAdnroidService::class.java)
-        var dispose = service.hotKey()
-            .compose(RxScheduler.rxScheduler())
-            .subscribe({
-                Log.e("benyq", it.data?.size.toString())
-            }, {
 
-            })
+        val flutterView = FlutterView(this)
+        val lp: FrameLayout.LayoutParams = FrameLayout.LayoutParams(
+            ViewGroup.LayoutParams.MATCH_PARENT,
+            ViewGroup.LayoutParams.MATCH_PARENT
+        )
+        val flContainer = findViewById<FrameLayout>(R.id.fl_container)
+        flContainer.addView(flutterView, lp)
+        // 关键代码，将Flutter页面显示到FlutterView中
+
+        val flutterEngine = FlutterEngine(this)
+        flutterEngine.dartExecutor.executeDartEntrypoint(
+            DartExecutor.DartEntrypoint.createDefault()
+        )
+        flutterView.attachToFlutterEngine(flutterEngine)
     }
 }
