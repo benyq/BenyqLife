@@ -42,6 +42,7 @@ class _MainScreenState extends State<MainScreen> {
       child: Scaffold(
           appBar: AppBar(
             title: Text(bottomBarTitles[_selectedIndex]),
+            elevation: 0,
           ),
           drawer: DrawerScreen(),
           //这个不需要PageView， 在这里使用只是为了熟悉 Widget

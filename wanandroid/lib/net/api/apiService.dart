@@ -1,7 +1,12 @@
 import 'package:dio/dio.dart';
 import 'package:wanandroid/data/articleModel.dart';
 import 'package:wanandroid/data/bannerModel.dart';
+import 'package:wanandroid/data/knowledgeDetailModel.dart';
+import 'package:wanandroid/data/knowledgeTreeModel.dart';
+import 'package:wanandroid/data/navigationModel.dart';
 import 'package:wanandroid/data/userModel.dart';
+import 'package:wanandroid/data/wxArticleModel.dart';
+import 'package:wanandroid/data/wxChaptersModel.dart';
 import 'package:wanandroid/net/api/apis.dart';
 
 import '../dioManager.dart';
@@ -45,6 +50,54 @@ class ApiService {
   void getSquareList(Function callback, Function errorCallback, int _page) async {
     dio.get(Apis.SQUARE_LIST + "/$_page/json").then((response) {
       callback(ArticleModel.fromJson(response.data));
+    }).catchError((e) {
+      errorCallback(e);
+    });
+  }
+
+  /// 获取公众号名称
+  void getWXChaptersList(Function callback, Function errorCallback) async {
+    dio.get(Apis.WX_CHAPTERS_LIST).then((response) {
+      callback(WXChaptersModel.fromJson(response.data));
+    }).catchError((e) {
+      errorCallback(e);
+    });
+  }
+
+  /// 获取公众号文章列表数据
+  void getWXArticleList(
+      Function callback, Function errorCallback, int _id, int _page) async {
+    dio.get(Apis.WX_ARTICLE_LIST + "/$_id/$_page/json").then((response) {
+      callback(WXArticleModel.fromJson(response.data));
+    }).catchError((e) {
+      errorCallback(e);
+    });
+  }
+
+  /// 获取知识体系数据
+  void getKnowledgeTreeList(Function callback, Function errorCallback) async {
+    dio.get(Apis.KNOWLEDGE_TREE_LIST).then((response) {
+      callback(KnowledgeTreeModel.fromJson(response.data));
+    }).catchError((e) {
+      errorCallback(e);
+    });
+  }
+
+  /// 获取知识体系详情数据
+  void getKnowledgeDetailList(
+      Function callback, Function errorCallback, int _page, int _id) async {
+    dio.get(Apis.KNOWLEDGE_DETAIL_LIST + "/$_page/json?cid=$_id")
+        .then((response) {
+      callback(KnowledgeDetailModel.fromJson(response.data));
+    }).catchError((e) {
+      errorCallback(e);
+    });
+  }
+
+  /// 获取导航列表数据
+  void getNavigationList(Function callback, Function errorCallback) async {
+    dio.get(Apis.NAVIGATION_LIST).then((response) {
+      callback(NavigationModel.fromJson(response.data));
     }).catchError((e) {
       errorCallback(e);
     });
