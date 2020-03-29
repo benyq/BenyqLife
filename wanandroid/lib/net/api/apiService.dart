@@ -1,9 +1,14 @@
 import 'package:dio/dio.dart';
 import 'package:wanandroid/data/articleModel.dart';
 import 'package:wanandroid/data/bannerModel.dart';
+import 'package:wanandroid/data/baseModel.dart';
+import 'package:wanandroid/data/collectionModel.dart';
 import 'package:wanandroid/data/knowledgeDetailModel.dart';
 import 'package:wanandroid/data/knowledgeTreeModel.dart';
 import 'package:wanandroid/data/navigationModel.dart';
+import 'package:wanandroid/data/projectArticleModel.dart';
+import 'package:wanandroid/data/projectTreeModel.dart';
+import 'package:wanandroid/data/userInfoModel.dart';
 import 'package:wanandroid/data/userModel.dart';
 import 'package:wanandroid/data/wxArticleModel.dart';
 import 'package:wanandroid/data/wxChaptersModel.dart';
@@ -102,4 +107,55 @@ class ApiService {
       errorCallback(e);
     });
   }
+
+  /// 获取项目分类列表数据
+  void getProjectTreeList(Function callback, Function errorCallback) async {
+    dio.get(Apis.PROJECT_TREE_LIST).then((response) {
+      callback(ProjectTreeModel.fromJson(response.data));
+    }).catchError((e) {
+      errorCallback(e);
+    });
+  }
+
+  /// 获取项目文章列表数据
+  void getProjectArticleList(
+      Function callback, Function errorCallback, int _id, int _page) async {
+    dio.get(Apis.PROJECT_ARTICLE_LIST + "/$_page/json?cid=$_id")
+        .then((response) {
+      callback(ProjectArticleListModel.fromJson(response.data));
+    }).catchError((e) {
+      errorCallback(e);
+    });
+  }
+
+  /// 获取用户个人信息
+  void getUserInfo(Function callback, Function errorCallback) async {
+    dio.get(Apis.USER_INFO).then((response) {
+      callback(UserInfoModel.fromJson(response.data));
+    }).catchError((e) {
+      errorCallback(e);
+    });
+  }
+
+  /// 获取收藏列表
+  void getCollectionList(
+      Function callback, Function errorCallback, int _page) async {
+    dio.get(Apis.COLLECTION_LIST + "/$_page/json").then((response) {
+      callback(CollectionModel.fromJson(response.data));
+    }).catchError((e) {
+      errorCallback(e);
+    });
+  }
+
+  /// 取消收藏
+  void cancelCollection(
+      Function callback, Function errorCallback, int _id) async {
+    dio.post(Apis.CANCEL_COLLECTION + "/$_id/json").then((response) {
+      callback(BaseModel.fromJson(response.data));
+    }).catchError((e) {
+      errorCallback(e);
+    });
+  }
+
+
 }

@@ -9,6 +9,8 @@ class Constants {
 
   static const String DARK_KEY = 'dark_key';
 
+  static const String USERNAME_KEY = 'username_key';
+  static const String COOKIES_KEY = 'cookies_key';
 }
 
 

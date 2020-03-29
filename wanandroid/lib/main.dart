@@ -10,11 +10,11 @@ import 'package:wanandroid/utils/spUtil.dart';
 import 'package:wanandroid/utils/themeUtil.dart';
 
 import 'common/Common.dart';
+import 'common/user.dart';
 import 'data/event/themeChangeEvent.dart';
 import 'net/dioManager.dart';
 
 void main() async {
-  DioManager.init();
 
   WidgetsFlutterBinding.ensureInitialized();
 
@@ -62,9 +62,16 @@ class _MyAppState extends State<MyApp> {
   /// 主题模式
   ThemeData themeData;
 
+  void _initAsync() async {
+    await User().getUserInfo();
+    await DioManager.init();
+  }
+
+
   @override
   void initState() {
     super.initState();
+    _initAsync();
     themeData = ThemeUtils.getThemeData();
     Application.eventBus = EventBus();
     registerThemeEvent();

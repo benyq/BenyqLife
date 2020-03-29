@@ -130,6 +130,7 @@ class _KnowledgeArticleScreenState
         onLoading: getMoreKnowledgeDetailList,
         child: ListView.builder(
           controller: _scrollController,
+          physics: new AlwaysScrollableScrollPhysics(),
           itemBuilder: (BuildContext context, int index) {
             KnowledgeDetailChild item = _list[index];
             return InkWell(

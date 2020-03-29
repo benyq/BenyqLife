@@ -3,6 +3,9 @@ import 'dart:convert';
 import 'package:dio/dio.dart';
 import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
+import 'package:wanandroid/common/application.dart';
+import 'package:wanandroid/common/user.dart';
+import 'package:wanandroid/data/event/loginEvent.dart';
 import 'package:wanandroid/data/userModel.dart';
 import 'package:wanandroid/net/api/apiService.dart';
 import 'package:wanandroid/ui/registerScreen.dart';
@@ -12,7 +15,6 @@ import 'package:wanandroid/widgets/loadingDialog.dart';
 class LoginScreen extends StatefulWidget {
   @override
   State<StatefulWidget> createState() {
-    // TODO: implement createState
     return _LoginScreenState();
   }
 }
@@ -135,6 +137,8 @@ class _LoginScreenState extends State<LoginScreen> {
         password.length != 0) {
       _showLoading(context);
       apiService.login((UserModel model, Response response) {
+        User().saveUserInfo(model, response);
+        Application.eventBus.fire(LoginEvent());
         _dismissLoading(context);
         print("model ${model.toJson()}");
         ToastUtil.show("登录成功");

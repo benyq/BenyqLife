@@ -23,6 +23,7 @@ class CookieInterceptor extends Interceptor {
       return false;
     });
     String cookie = getCookies(cookies);
+    print("onRequest $cookie fffffff");
     if (cookie.isNotEmpty) options.headers[HttpHeaders.cookieHeader] = cookie;
   }
 

@@ -122,32 +122,35 @@ class _KnowledgeTreeScreenState extends BaseWidgetState<KnowledgeTreeScreen> {
             Row(
               children: <Widget>[
                 Expanded(
-                  child: Column(
-                    children: <Widget>[
-                      Container(
-                        alignment: Alignment.centerLeft,
-                        padding: EdgeInsets.only(bottom: 8),
-                        child: Text(
-                          item.name,
-                          style: TextStyle(fontSize: 16),
-                          textAlign: TextAlign.left,
+                  child: Container(
+                    padding: EdgeInsets.fromLTRB(16, 8, 16, 8),
+                    child: Column(
+                      children: <Widget>[
+                        Container(
+                          alignment: Alignment.centerLeft,
+                          padding: EdgeInsets.only(bottom: 8),
+                          child: Text(
+                            item.name,
+                            style: TextStyle(fontSize: 16),
+                            textAlign: TextAlign.left,
+                          ),
                         ),
-                      ),
-                      Container(
-                        alignment: Alignment.topLeft,
-                        child: Wrap(
-                          spacing: 10,
-                          runSpacing: 6,
-                          alignment: WrapAlignment.start,
-                          children: item.children.map((bean) {
-                            return Text(
-                              bean.name,
-                              style: TextStyle(color: Color(0xFF757575)),
-                            );
-                          }).toList(),
-                        ),
-                      )
-                    ],
+                        Container(
+                          alignment: Alignment.topLeft,
+                          child: Wrap(
+                            spacing: 10,
+                            runSpacing: 6,
+                            alignment: WrapAlignment.start,
+                            children: item.children.map((bean) {
+                              return Text(
+                                bean.name,
+                                style: TextStyle(color: Color(0xFF757575)),
+                              );
+                            }).toList(),
+                          ),
+                        )
+                      ],
+                    ),
                   ),
                 ),
                 Icon(
